@@ -1,0 +1,5 @@
+sourceType: DEFAULT
+script: |
+  SELECT id AS value, class_name AS label FROM project_class WHERE is_delete = 0
+scriptCount:
+config:

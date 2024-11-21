@@ -1,0 +1,17 @@
+sourceType: DEFAULT
+script: |
+  SELECT
+    id AS id,
+    device_name AS deviceName,
+    device_code AS deviceCode,
+    device_ip AS deviceIp,
+    device_type AS deviceType,
+    model AS model,
+    serial_number AS serialNumber,
+    purchase_date AS purchaseDate,
+    images,
+    remarks
+  FROM device_info
+  WHERE id = #{params.id}
+scriptCount:
+config:

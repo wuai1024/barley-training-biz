@@ -1,0 +1,98 @@
+{
+  "page": [
+    {
+      "columns": [
+        {
+          "key": "01",
+          "name": "默认",
+          "columns": [
+            {
+              "title": "ID",
+              "dataIndex": "id",
+              "hideInTable": true
+            },
+            {
+              "title": "培训项目",
+              "width": "150px",
+              "dataIndex": "projectName",
+              "hideInTable": false
+            },
+            {
+              "title": "培训班名称",
+              "width": "150px",
+              "dataIndex": "className",
+              "hideInTable": false
+            },
+            {
+              "title": "分项",
+              "width": "150px",
+              "dataIndex": "subjectName",
+              "hideInTable": false
+            },
+            {
+              "title": "金额",
+              "width": "150px",
+              "dataIndex": "amount",
+              "hideInTable": false
+            },
+            {
+              "title": "支出日期",
+              "width": "160px",
+              "dataIndex": "transactionDate",
+              "hideInTable": false
+            },
+            {
+              "title": "备注",
+              "width": "165px",
+              "dataIndex": "remarks",
+              "hideInTable": false
+            },
+            {
+              "title": "操作",
+              "dataIndex": "_panel",
+              "menusItems": [
+                {
+                  "key": "disable",
+                  "text": "移除",
+                  "color": "#cf1322",
+                  "eventName": "ENABLE",
+                  "popConfirm": {
+                    "title": "确认移除此记录吗？",
+                    "okText": "是",
+                    "cancelText": "否"
+                  }
+                }
+              ],
+              "hideInTable": false
+            }
+          ]
+        }
+      ],
+      "modules": [
+        "EXPORT"
+      ],
+      "component": "Table",
+      "searchForm": [
+        {
+          "key": "projectId",
+          "title": "培训项目",
+          "width": 200,
+          "dataIndex": "projectId",
+          "valueCode": "BASIC_PROJECT_LIST",
+          "valueType": "select"
+        },
+        {
+          "key": "classId",
+          "title": "培训班名称",
+          "width": 200,
+          "dataIndex": "classId",
+          "valueCode": "BASIC_PROJECT_CLASS_LIST",
+          "valueType": "select"
+        }
+      ],
+      "searchConfig": {
+        "code": "BUS_PROJECT_FUNDS_FLOW"
+      }
+    }
+  ]
+}

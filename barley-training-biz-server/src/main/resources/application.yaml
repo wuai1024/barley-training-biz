@@ -1,0 +1,37 @@
+# 无损下线
+server:
+  shutdown: graceful
+spring:
+  application:
+    name: barley-training-biz
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+  web:
+    resources:
+      add-mappings: false
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: ${barley.datasource.url:jdbc:mysql://mysql.xxscloud.com:3306/barley_training?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&SSL=true}
+    username: ${barley.datasource.username:root}
+    password: ${barley.datasource.password:Lxasd123!@#}
+  data:
+    # Redis 6.X
+    redis:
+      host: ${barley.redis.host:r-uf61dmje3oz816jctppd.redis.rds.aliyuncs.com}
+      port: ${barley.redis.port:6379}
+      password: ${barley.redis.password:r-uf61dmje3oz816jctp:0ElTRu1TFRcBHLyk}
+      database: ${barley.redis.database:2}
+      timeout: 6000
+      lettuce:
+        pool:
+          max-active: 10
+          max-idle: 10
+          max-wait: 10
+          min-idle: 0
+        shutdown-timeout: 100ms
+  safety:
+    ignoring:
+      - /auth/**
+      - /s3/**

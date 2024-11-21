@@ -1,0 +1,72 @@
+{
+  "page": [
+    {
+      "columns": [
+        {
+          "key": "01",
+          "name": "默认",
+          "columns": [
+            {
+              "title": "ID",
+              "dataIndex": "id",
+              "hideInTable": true
+            },
+            {
+              "title": "职称代码",
+              "width": "150px",
+              "dataIndex": "code",
+              "hideInTable": false
+            },
+            {
+              "title": "职称名称",
+              "width": "150px",
+              "dataIndex": "name",
+              "hideInTable": false
+            },
+            {
+              "title": "操作",
+              "dataIndex": "_panel",
+              "menusItems": [
+                {
+                  "key": "edit",
+                  "text": "编辑",
+                  "eventName": "EDIT"
+                },
+                {
+                  "key": "delete",
+                  "text": "删除",
+                  "color": "#cf1322",
+                  "eventName": "DELETE",
+                  "popConfirm": {
+                    "title": "确认删除此数据？",
+                    "okText": "是",
+                    "cancelText": "否"
+                  }
+                }
+              ],
+              "hideInTable": false
+            }
+          ]
+        }
+      ],
+      "component": "Table",
+      "searchForm": [
+        {
+          "key": "code",
+          "title": "职称编号",
+          "width": 200,
+          "dataIndex": "code"
+        },
+        {
+          "key": "name",
+          "title": "证书名称",
+          "width": 200,
+          "dataIndex": "name"
+        }
+      ],
+      "searchConfig": {
+        "code": "BASIC_TEACHER_TITLE"
+      }
+    }
+  ]
+}

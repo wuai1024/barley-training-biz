@@ -1,0 +1,12 @@
+sourceType: DEFAULT
+script: |
+  SELECT
+    id,
+    code,
+    name,
+    acquisition_date AS acquisitionDate,
+    remarks
+  FROM teacher_title
+  WHERE id = #{params.id}
+scriptCount:
+config:

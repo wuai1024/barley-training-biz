@@ -1,0 +1,30 @@
+### 设备查询
+POST {{baseUrl}}query/search/BASIC_DEVICE_INFO
+Content-Type:application/json
+#Authorization:{{token}}
+
+{
+   "pageSize":20,
+    "params":{},
+    "currentPage":1
+}
+
+###调理记录列表
+POST {{baseUrl}}/query/list/BASIC_TREATMENT_RECORD
+Content-Type:application/json
+Authorization:{{token}}
+
+{
+   "openId":"123"
+}
+
+###详情
+POST {{baseUrl}}/query/get/BASE_PATIENT_TREATMENT_RECORD
+Content-Type:application/json
+Authorization:{{token}}
+
+{
+   "params":{
+          "id":1854801005892452354
+        }
+}

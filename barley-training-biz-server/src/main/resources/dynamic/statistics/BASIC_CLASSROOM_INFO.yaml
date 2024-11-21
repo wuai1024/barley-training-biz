@@ -1,0 +1,21 @@
+sourceType: DEFAULT
+script: |
+  SELECT
+    id,
+    name,
+    code,
+    capacity,
+    type,
+    device,
+    remarks
+  FROM classroom_info
+  WHERE id = #{params.id}
+scriptCount:
+config: |
+  {
+    "type": {
+      "objectField": [
+        "device"
+      ]
+    }
+  }

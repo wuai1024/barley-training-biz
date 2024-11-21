@@ -1,0 +1,21 @@
+sourceType: DEFAULT
+script: |
+  WITH D AS (
+    SELECT jt.value
+    FROM classroom_info e,
+    JSON_TABLE(e.device, '$[*]' 
+      COLUMNS (
+              value BIGINT PATH '$'
+      )
+  ) AS jt
+  WHERE  is_delete = 0
+    <if test="params.classroomId != null and params.classroomId != ''">
+      AND e.id != #{params.classroomId}
+    </if>
+  )
+  SELECT id AS value, device_name AS label
+  FROM device_info di
+  WHERE di.is_delete = 0
+  AND id NOT IN  (SELECT * FROM D)
+scriptCount:
+config:

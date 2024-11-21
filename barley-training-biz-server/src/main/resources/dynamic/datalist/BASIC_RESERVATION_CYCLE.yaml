@@ -1,0 +1,9 @@
+sourceType: DEFAULT
+script: |
+  SELECT 'DAY' AS value,'每天' AS label 
+  UNION ALL
+  SELECT 'WEEK' AS value,'每周' AS label
+  UNION ALL
+  SELECT 'MONTH' AS value,'每月' AS label
+scriptCount:
+config:

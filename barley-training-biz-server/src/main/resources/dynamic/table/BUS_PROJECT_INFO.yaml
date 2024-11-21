@@ -1,0 +1,34 @@
+sourceType: DEFAULT
+script: |
+  SELECT
+    id,
+    project_code AS projectCode,
+    project_name AS projectName,
+    start_date AS startDate,
+    end_date AS endDate,
+    hours,
+    project_description AS projectDescription,
+    is_display AS isDisplay,
+    CASE is_display WHEN '1' THEN '是' WHEN '0' THEN '否' ELSE '' END AS displayName
+  FROM project
+  <where>
+    is_delete = 0
+    <if test="params.projectName != null and params.projectName != ''">
+      AND project_name LIKE CONCAT('%', #{params.projectName}, '%')
+    </if>
+    <if test="params.projectCode != null and params.projectCode != ''">
+      AND project_code LIKE CONCAT('%', #{params.projectCode}, '%')
+    </if>
+  </where>
+scriptCount: |
+  SELECT count(*) FROM project
+  <where>
+    is_delete = 0
+    <if test="params.projectName != null and params.projectName != ''">
+      AND project_name LIKE CONCAT('%', #{params.projectName}, '%')
+    </if>
+    <if test="params.projectCode != null and params.projectCode != ''">
+      AND project_code = #{params.projectCode}
+    </if>
+  </where>
+config:

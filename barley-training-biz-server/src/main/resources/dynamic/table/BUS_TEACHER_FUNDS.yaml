@@ -1,0 +1,49 @@
+sourceType: DEFAULT
+script: |
+  var result = mybatis.query('BARLEY_TRAINING', pair.get('BUS_TEACHER_FUNDS'), params);
+  var teacherTitleList = mybatis.query('BARLEY_TRAINING', pair.get('BASIC_TEACHER_TITLE_LIST'), params);
+  
+  function v(obj) {
+    return obj == null ? '' : obj.toString();
+  }
+  
+  function find(id, hours) {
+    // 匹配可能的配置
+    var teacherList = new java.util.ArrayList();
+    for(var i = 0; i < teacherTitleList.length; i++ ) {
+      var item = teacherTitleList.get(i);
+      if ( v(item.get('id')) == v(id) ) {
+        teacherList.add(item);
+      }
+    }
+
+    // 如果找不到配置
+    if (teacherList.length <= 0) {
+      return null;
+    }
+
+    // 匹配最合适的
+    for(var i = 0; i < teacherList.length; i++ ) {
+      var item = teacherList.get(i);
+      if ( Number(v(item.get('hour'))) > Number(v(hours)) ) {
+        return item;
+      }
+    }
+
+  // 返回最后一个
+    return teacherList.get(teacherList.length - 1);
+  }
+
+  for(var i = 0; i < result.length; i++ ) {
+      var item = result.get(i);
+      var priceInfo = find(item.get('titleId'), item.get('totalHours'))
+      if(priceInfo != null) {
+        item.put('price', priceInfo.get('price'));
+        item.put('income', Number(v(priceInfo.get('price'))) * Number(v(item.get('totalHours'))));
+    }
+  }
+  result
+scriptCount: |
+  var result = mybatis.queryObject('BARLEY_TRAINING', pair.get('BUS_TEACHER_FUNDS_COUNT'), params);
+  result
+config:

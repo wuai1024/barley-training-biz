@@ -1,0 +1,34 @@
+sourceType: DEFAULT
+script: |
+  SELECT
+    tc.id,
+    tc.teacher_id AS teacherId,
+    t.name AS teacherName,
+    tc.certificate_code AS certificateCode,
+    tc.certificate_name AS certificateName,
+    tc.issuing_authority AS issuingAuthority,
+    tc.acquisition_date AS acquisitionDate
+  FROM teacher_certificate tc
+  JOIN teacher t ON t.id = tc.teacher_id
+  <where>
+    tc.is_delete = 0
+    <if test="params.teacherName != null and params.teacherName != ''">
+      AND t.name LIKE CONCAT('%', #{params.teacherName}, '%')
+    </if>
+    <if test="params.certificateName != null and params.certificateName != ''">
+      AND tc.certificate_name LIKE CONCAT('%', #{params.certificateName}, '%')
+    </if>
+  </where>
+scriptCount: |
+  SELECT count(*) FROM teacher_certificate tc
+  JOIN teacher t ON t.id = tc.teacher_id
+  <where>
+    tc.is_delete = 0
+    <if test="params.teacherName != null and params.teacherName != ''">
+      AND t.name LIKE CONCAT('%', #{params.teacherName}, '%')
+    </if>
+    <if test="params.certificateName != null and params.certificateName != ''">
+      AND tc.certificate_name LIKE CONCAT('%', #{params.certificateName}, '%')
+    </if>
+  </where>
+config:

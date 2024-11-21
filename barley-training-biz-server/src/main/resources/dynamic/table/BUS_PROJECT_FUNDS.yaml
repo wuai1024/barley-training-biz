@@ -1,0 +1,41 @@
+sourceType: DEFAULT
+script: |
+  SELECT 
+    t1.id,
+    t2.project_name AS projectName,
+    t3.class_name AS className,
+    t1.project_id AS projectId,
+    t2.project_name AS projectName,
+    t1.subject_id AS subjectId,
+    t4.subject_name AS subjectName,
+    t1.total_amount AS totalAmount,
+    t1.expenditure_amount as expenditureAmount,
+    t1.total_amount - t1.expenditure_amount AS amount
+  FROM project_funds t1
+  LEFT JOIN project t2 ON t1.project_id = t2.id
+  LEFT JOIN project_class t3 ON t1.class_id = t3.id
+  LEFT JOIN project_subject t4 ON t1.subject_id = t4.id
+  <where>
+    t1.is_delete = 0
+    <if test="params.projectId != null and params.projectId != ''">
+      AND t1.project_id = #{params.projectId}
+    </if>
+    <if test="params.classId != null and params.classId != ''">
+      AND t1.class_id = #{params.classId}
+    </if>
+  </where>
+scriptCount: |
+  SELECT count(*) FROM project_funds t1
+  LEFT JOIN project t2 ON t1.project_id = t2.id
+  LEFT JOIN project_class t3 ON t1.class_id = t3.id
+  LEFT JOIN project_subject t4 ON t1.subject_id = t4.id
+  <where>
+    t1.is_delete = 0
+    <if test="params.projectId != null and params.projectId != ''">
+      AND t1.project_id = #{params.projectId}
+    </if>
+    <if test="params.classId != null and params.classId != ''">
+      AND t1.class_id = #{params.classId}
+    </if>
+  </where>
+config:

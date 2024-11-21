@@ -1,0 +1,49 @@
+sourceType: DEFAULT
+script: |
+  SELECT
+    t1.id,
+    t1.code,
+    t1.name AS teacherName,
+    t1.in_out_dept AS inOutDept,
+    t1.organization_name AS organizationName,
+    t1.gender,
+    t1.birth_date AS birthDate,
+    t1.phone AS phone,
+    t1.email,
+    t1.address,
+    t1.education,
+    CASE t1.education
+    WHEN 'ASSOCIATE' THEN '大专'
+    WHEN 'BACHELOR' THEN '本科'
+    WHEN 'MASTER' THEN '硕士'
+    WHEN 'DOCTORAL' THEN '博士'
+    ELSE '其他'
+    END AS educationName,
+    t1.educational_experience AS educationalExperience,
+    t1.work_experience AS workExperience,
+    t1.title_id AS titleId,
+    t2.name AS titleName
+  FROM teacher t1
+  LEFT JOIN teacher_title t2 On t1.title_id = t2.id
+  <where>
+    t1.is_delete = 0
+    <if test="params.titleId != null">
+      AND t1.title_id = #{params.titleId}
+    </if>
+    <if test="params.name != null and params.name != ''">
+      AND t1.name LIKE CONCAT('%', #{params.name}, '%')
+    </if>
+  </where>
+scriptCount: |
+  SELECT count(*) FROM teacher t1
+  LEFT JOIN teacher_title t2 On t1.title_id = t2.id
+  <where>
+    t1.is_delete = 0
+    <if test="params.titleId != null">
+      AND t1.title_id = #{params.titleId}
+    </if>
+    <if test="params.name != null and params.name != ''">
+      AND t1.name LIKE CONCAT('%', #{params.name}, '%')
+    </if>
+  </where>
+config:

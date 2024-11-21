@@ -1,0 +1,98 @@
+{
+  "page": [
+    {
+      "columns": [
+        {
+          "key": "01",
+          "name": "默认",
+          "columns": [
+            {
+              "title": "ID",
+              "dataIndex": "id",
+              "hideInTable": true
+            },
+            {
+              "title": "培训项目",
+              "width": "150px",
+              "dataIndex": "projectName",
+              "hideInTable": false
+            },
+            {
+              "title": "培训班名称",
+              "width": "150px",
+              "dataIndex": "className",
+              "hideInTable": false
+            },
+            {
+              "title": "教师",
+              "width": "150px",
+              "dataIndex": "teacherName",
+              "hideInTable": false
+            },
+            {
+              "title": "职称",
+              "width": "150px",
+              "dataIndex": "titleName",
+              "hideInTable": false
+            },
+            {
+              "title": "课时",
+              "width": "160px",
+              "dataIndex": "totalHours",
+              "hideInTable": false
+            },
+            {
+              "title": "时薪",
+              "width": "160px",
+              "dataIndex": "price",
+              "hideInTable": false
+            },
+            {
+              "title": "薪资",
+              "width": "165px",
+              "dataIndex": "income",
+              "hideInTable": false
+            },
+            {
+              "dataIndex": "_panel",
+              "hideInTable": false
+            }
+          ]
+        }
+      ],
+      "modules": [
+        "EXPORT"
+      ],
+      "component": "Table",
+      "searchForm": [
+        {
+          "key": "projectId",
+          "title": "项目",
+          "width": 200,
+          "dataIndex": "projectId",
+          "valueCode": "BASIC_PROJECT_LIST",
+          "valueType": "select"
+        },
+        {
+          "key": "classId",
+          "title": "培训班名称",
+          "width": 200,
+          "dataIndex": "classId",
+          "valueCode": "BASIC_PROJECT_CLASS_LIST",
+          "valueType": "select"
+        },
+        {
+          "key": "teacherId",
+          "title": "教师",
+          "width": 200,
+          "dataIndex": "teacherId",
+          "valueCode": "BASIC_TEACHER_LIST",
+          "valueType": "select"
+        }
+      ],
+      "searchConfig": {
+        "code": "BUS_TEACHER_FUNDS"
+      }
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "page": [
+    {
+      "columns": [
+        {
+          "key": "01",
+          "name": "默认",
+          "columns": [
+            {
+              "title": "ID",
+              "dataIndex": "id",
+              "hideInTable": true
+            },
+            {
+              "title": "培训项目",
+              "width": "150px",
+              "dataIndex": "projectName",
+              "hideInTable": false
+            },
+            {
+              "title": "培训班名称",
+              "width": "150px",
+              "dataIndex": "className",
+              "hideInTable": false
+            },
+            {
+              "title": "姓名",
+              "width": "120px",
+              "dataIndex": "name",
+              "hideInTable": false
+            },
+            {
+              "title": "性别",
+              "width": "100px",
+              "dataIndex": "gender",
+              "hideInTable": false
+            },
+            {
+              "title": "工号",
+              "width": "100px",
+              "dataIndex": "code",
+              "hideInTable": false
+            },
+            {
+              "title": "联系方式",
+              "width": "120px",
+              "dataIndex": "phone",
+              "hideInTable": false
+            },
+            {
+              "dataIndex": "_panel"
+            }
+          ]
+        }
+      ],
+      "modules": [
+        "EXPORT"
+      ],
+      "component": "Table",
+      "searchForm": [
+        {
+          "key": "projectId",
+          "title": "培训项目",
+          "width": 200,
+          "dataIndex": "projectId",
+          "valueCode": "BASIC_PROJECT_LIST",
+          "valueType": "select"
+        },
+        {
+          "key": "classId",
+          "title": "培训班名称",
+          "width": 200,
+          "dataIndex": "classId",
+          "valueCode": "BASIC_PROJECT_CLASS_LIST",
+          "valueType": "select"
+        },
+        {
+          "key": "code",
+          "title": "工号",
+          "width": 200,
+          "dataIndex": "code"
+        }
+      ],
+      "searchConfig": {
+        "code": "BUS_STUDENT_SIGN_DETAIL"
+      }
+    }
+  ]
+}

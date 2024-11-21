@@ -1,0 +1,7 @@
+sourceType: DEFAULT
+script: |
+  var a = new java.util.HashMap();
+  a.put('title', '摄像头1');
+  a.put('url', 'https://player.alicdn.com/video/aliyunmedia.mp4');
+scriptCount:
+config:

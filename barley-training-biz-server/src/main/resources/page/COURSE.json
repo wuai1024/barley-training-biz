@@ -1,0 +1,130 @@
+{
+  "page": [
+    {
+      "columns": [
+        {
+          "key": "01",
+          "name": "默认",
+          "columns": [
+            {
+              "title": "ID",
+              "dataIndex": "id",
+              "hideInTable": true
+            },
+            {
+              "title": "培训项目",
+              "width": "120px",
+              "dataIndex": "projectName",
+              "hideInTable": false
+            },
+            {
+              "title": "培训班名称",
+              "width": "120px",
+              "dataIndex": "className",
+              "hideInTable": false
+            },
+            {
+              "title": "教师",
+              "width": "120px",
+              "dataIndex": "teacherName",
+              "hideInTable": false
+            },
+            {
+              "title": "教室",
+              "width": "120px",
+              "dataIndex": "classroomName",
+              "hideInTable": false
+            },
+            {
+              "title": "督导员",
+              "width": "120px",
+              "dataIndex": "supervise",
+              "hideInTable": false
+            },
+            {
+              "title": "督导员电话",
+              "width": "120px",
+              "dataIndex": "supervisePhone",
+              "hideInTable": false
+            },
+            {
+              "title": "培训内容",
+              "width": "160px",
+              "dataIndex": "trainingContent",
+              "hideInTable": false
+            },
+            {
+              "title": "培训形式",
+              "width": "125px",
+              "dataIndex": "trainingFormName",
+              "hideInTable": false
+            },
+            {
+              "title": "日期",
+              "width": "125px",
+              "dataIndex": "date",
+              "hideInTable": false
+            },
+            {
+              "title": "时间",
+              "width": "125px",
+              "dataIndex": "time",
+              "hideInTable": false
+            },
+            {
+              "title": "课时",
+              "width": "125px",
+              "dataIndex": "hours",
+              "hideInTable": false
+            },
+            {
+              "title": "操作",
+              "dataIndex": "_panel",
+              "menusItems": [
+                {
+                  "key": "edit",
+                  "text": "编辑",
+                  "eventName": "EDIT"
+                },
+                {
+                  "key": "delete",
+                  "text": "移除",
+                  "color": "#cf1322",
+                  "eventName": "DELETE",
+                  "popConfirm": {
+                    "title": "确认移除此记录吗？",
+                    "okText": "是",
+                    "cancelText": "否"
+                  }
+                }
+              ],
+              "hideInTable": false
+            }
+          ]
+        }
+      ],
+      "component": "Table",
+      "searchForm": [
+        {
+          "key": "projectId",
+          "title": "培训项目",
+          "width": 200,
+          "dataIndex": "projectId",
+          "valueCode": "BASIC_PROJECT_LIST",
+          "valueType": "select"
+        },
+        {
+          "key": "classId",
+          "title": "培训班名称",
+          "width": 200,
+          "dataIndex": "classId",
+          "valueCode": "BASIC_PROJECT_CLASS_LIST",
+          "valueType": "select"
+        }
+      ],
+      "searchConfig": {
+        "code": "BUS_COURSE_INFO"
+      }
+    }
+  ]
+}

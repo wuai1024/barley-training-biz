@@ -1,0 +1,8 @@
+sourceType: DEFAULT
+script: |
+  var a = new java.util.HashMap();
+  a.put('title', '课程详情2');
+  a.put('description', '课程描述 按需配置');
+  a.put('url', 'https://player.alicdn.com/video/aliyunmedia.mp4');
+scriptCount:
+config:

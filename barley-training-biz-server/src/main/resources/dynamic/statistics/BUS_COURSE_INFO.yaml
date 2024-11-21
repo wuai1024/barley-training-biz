@@ -1,0 +1,19 @@
+sourceType: DEFAULT
+script: |
+  SELECT
+    t1.id,
+    t1.project_id AS projectId,
+    t1.class_id AS classId,
+    t1.teacher_id AS teacherId,
+    t1.classroom_id AS classroomId,
+    t1.training_content AS trainingContent,
+    t1.training_form AS trainingForm,
+    t1.supervise_phone AS supervisePhone,
+    t1.supervise
+    t1.date,
+    t1.time,
+    t1.remarks
+  FROM course t1
+  WHERE t1.id = #{params.id}
+scriptCount:
+config:

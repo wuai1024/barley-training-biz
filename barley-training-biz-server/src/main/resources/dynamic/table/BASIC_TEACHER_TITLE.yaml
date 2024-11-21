@@ -1,0 +1,36 @@
+sourceType: DEFAULT
+script: |
+  SELECT
+    id,
+    code,
+    name,
+    config
+  FROM teacher_title
+  <where>
+    is_delete = 0
+    <if test="params.code != null and params.code != ''">
+      AND code LIKE CONCAT('%', #{params.code}, '%')
+    </if>
+    <if test="params.name != null and params.name != ''">
+      AND name LIKE CONCAT('%', #{params.name}, '%')
+    </if>
+  </where>
+scriptCount: |
+  SELECT count(*) FROM teacher_title
+  <where>
+    is_delete = 0
+    <if test="params.code != null and params.code != ''">
+      AND code LIKE CONCAT('%', #{params.code}, '%')
+    </if>
+    <if test="params.name != null and params.name != ''">
+      AND name LIKE CONCAT('%', #{params.name}, '%')
+    </if>
+  </where>
+config: |
+  {
+    "type": {
+      "objectField": [
+        "config"
+      ]
+    }
+  }

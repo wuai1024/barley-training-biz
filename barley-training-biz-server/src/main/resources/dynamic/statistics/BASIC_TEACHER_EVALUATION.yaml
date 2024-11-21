@@ -1,0 +1,15 @@
+sourceType: DEFAULT
+script: |
+  SELECT
+    t1.id,
+    t1.teacher_id AS teacherId,
+    t1.project_id AS projectId,
+    t1.evaluation_date AS evaluationDate,
+    t1.score,
+    t1.result,
+    t1.images,
+    t1.remarks
+  FROM teacher_evaluation t1
+  WHERE t1.id = #{params.id}
+scriptCount:
+config:

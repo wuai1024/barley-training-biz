@@ -1,0 +1,92 @@
+{
+  "page": [
+    {
+      "columns": [
+        {
+          "key": "01",
+          "name": "默认",
+          "columns": [
+            {
+              "title": "ID",
+              "dataIndex": "id",
+              "hideInTable": true
+            },
+            {
+              "title": "教师名称",
+              "width": "150px",
+              "dataIndex": "teacherName",
+              "hideInTable": false
+            },
+            {
+              "title": "证书编号",
+              "width": "150px",
+              "dataIndex": "certificateCode",
+              "hideInTable": false
+            },
+            {
+              "title": "证书名称",
+              "width": "150px",
+              "dataIndex": "certificateName",
+              "hideInTable": false
+            },
+            {
+              "title": "颁发机构",
+              "width": "150px",
+              "dataIndex": "issuingAuthority",
+              "hideInTable": false
+            },
+            {
+              "title": "获取日期",
+              "width": "165px",
+              "dataIndex": "acquisitionDate",
+              "hideInTable": false
+            },
+            {
+              "title": "操作",
+              "dataIndex": "_panel",
+              "menusItems": [
+                {
+                  "key": "edit",
+                  "text": "编辑",
+                  "eventName": "EDIT"
+                },
+                {
+                  "key": "delete",
+                  "text": "删除",
+                  "color": "#cf1322",
+                  "eventName": "DELETE",
+                  "popConfirm": {
+                    "title": "确认删除此数据？",
+                    "okText": "是",
+                    "cancelText": "否"
+                  }
+                }
+              ],
+              "hideInTable": false
+            }
+          ]
+        }
+      ],
+      "component": "Table",
+      "searchForm": [
+        {
+          "key": "teacherId",
+          "title": "教师名称",
+          "width": 200,
+          "dataIndex": "teacherId",
+          "valueCode": "BASIC_TEACHER_LIST",
+          "valueType": "select"
+        },
+        {
+          "key": "certificateName",
+          "title": "证书名称",
+          "width": 200,
+          "dataIndex": "certificateName"
+        }
+      ],
+      "searchConfig": {
+        "code": "BASIC_TEACHER_CERTIFICATE"
+      }
+    }
+  ]
+}

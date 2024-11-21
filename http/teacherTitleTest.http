@@ -1,0 +1,14 @@
+###
+POST {{baseUrl}}/teacher/title/save
+Content-Type:application/json
+
+{
+  "id":"1844643328400384002",
+  "code":"L001",
+  "name":"初级职称",
+  "config":[
+      {"hour":10,"price":100},
+      {"hour":20,"price":90},
+      {"hour":30,"price":80}
+    ]
+}

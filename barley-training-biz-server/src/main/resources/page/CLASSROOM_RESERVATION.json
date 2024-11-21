@@ -1,0 +1,116 @@
+{
+  "page": [
+    {
+      "columns": [
+        {
+          "key": "01",
+          "name": "默认",
+          "columns": [
+            {
+              "title": "ID",
+              "dataIndex": "id",
+              "hideInTable": true
+            },
+            {
+              "link": "/classroom-reservation/edit/#{id}",
+              "title": "教室名称",
+              "width": "120px",
+              "dataIndex": "classRoomName",
+              "hideInTable": false
+            },
+            {
+              "title": "周期",
+              "width": "100px",
+              "dataIndex": "cycleName",
+              "hideInTable": false
+            },
+            {
+              "title": "预定时间",
+              "width": "120px",
+              "dataIndex": "reservationTime",
+              "hideInTable": false
+            },
+            {
+              "title": "时长",
+              "width": "100px",
+              "dataIndex": "duration",
+              "hideInTable": false
+            },
+            {
+              "title": "开始日期",
+              "width": "125px",
+              "dataIndex": "startDate",
+              "hideInTable": false
+            },
+            {
+              "title": "结束日期",
+              "width": "125px",
+              "dataIndex": "endDate",
+              "hideInTable": false
+            },
+            {
+              "title": "容纳人数",
+              "width": "100px",
+              "dataIndex": "capacity",
+              "hideInTable": false
+            },
+            {
+              "title": "预定人",
+              "width": "120px",
+              "dataIndex": "reserverName",
+              "hideInTable": false
+            },
+            {
+              "title": "联系方式",
+              "width": "90px",
+              "dataIndex": "reserverPhone",
+              "hideInTable": false
+            },
+            {
+              "title": "用途",
+              "width": "150px",
+              "dataIndex": "purpose",
+              "hideInTable": false
+            },
+            {
+              "title": "操作",
+              "dataIndex": "_panel",
+              "menusItems": [
+                {
+                  "key": "delete",
+                  "text": "删除",
+                  "color": "#cf1322",
+                  "eventName": "DELETE",
+                  "popConfirm": {
+                    "title": "确认删除此预约？",
+                    "okText": "是",
+                    "cancelText": "否"
+                  }
+                }
+              ],
+              "hideInTable": false
+            }
+          ]
+        }
+      ],
+      "component": "Table",
+      "searchForm": [
+        {
+          "key": "reserverName",
+          "title": "预定人",
+          "width": 200,
+          "dataIndex": "reserverName"
+        },
+        {
+          "key": "reserverPhone",
+          "title": "联系方式",
+          "width": 200,
+          "dataIndex": "reserverPhone"
+        }
+      ],
+      "searchConfig": {
+        "code": "BASIC_CLASSROOM_RESERVATION_INFO"
+      }
+    }
+  ]
+}

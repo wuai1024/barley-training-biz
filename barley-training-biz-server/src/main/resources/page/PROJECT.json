@@ -1,0 +1,106 @@
+{
+  "page": [
+    {
+      "columns": [
+        {
+          "key": "01",
+          "name": "默认",
+          "columns": [
+            {
+              "title": "ID",
+              "dataIndex": "id",
+              "hideInTable": true
+            },
+            {
+              "title": "项目编号",
+              "width": "150px",
+              "dataIndex": "projectCode",
+              "hideInTable": false
+            },
+            {
+              "title": "培训项目",
+              "width": "150px",
+              "dataIndex": "projectName",
+              "hideInTable": false
+            },
+            {
+              "title": "开始日期",
+              "width": "150px",
+              "dataIndex": "startDate",
+              "hideInTable": false
+            },
+            {
+              "title": "结束日期",
+              "width": "150px",
+              "dataIndex": "endDate",
+              "hideInTable": false
+            },
+            {
+              "title": "项目简介",
+              "width": "250px",
+              "dataIndex": "projectDescription",
+              "hideInTable": false
+            },
+            {
+              "title": "是否公开",
+              "width": "90px",
+              "dataIndex": "displayName",
+              "hideInTable": false,
+              "renderContent": [
+                {
+                  "content": "<span style=\"color: #389e0d\">#{value}</span>",
+                  "condition": "record.isDisplay === true"
+                },
+                {
+                  "content": "<span style=\"color: #cf1322\">#{value}</span>",
+                  "condition": "record.isDisplay === false"
+                }
+              ]
+            },
+            {
+              "title": "操作",
+              "dataIndex": "_panel",
+              "menusItems": [
+                {
+                  "key": "edit",
+                  "text": "编辑",
+                  "eventName": "EDIT"
+                },
+                {
+                  "key": "delete",
+                  "text": "移除",
+                  "color": "#cf1322",
+                  "eventName": "DELETE",
+                  "popConfirm": {
+                    "title": "确认移除此记录吗？",
+                    "okText": "是",
+                    "cancelText": "否"
+                  }
+                }
+              ],
+              "hideInTable": false
+            }
+          ]
+        }
+      ],
+      "component": "Table",
+      "searchForm": [
+        {
+          "key": "projectCode",
+          "title": "项目编号",
+          "width": 200,
+          "dataIndex": "projectCode"
+        },
+        {
+          "key": "projectName",
+          "title": "培训项目",
+          "width": 200,
+          "dataIndex": "projectName"
+        }
+      ],
+      "searchConfig": {
+        "code": "BUS_PROJECT_INFO"
+      }
+    }
+  ]
+}

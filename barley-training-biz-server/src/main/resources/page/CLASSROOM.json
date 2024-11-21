@@ -1,0 +1,86 @@
+{
+  "page": [
+    {
+      "columns": [
+        {
+          "key": "01",
+          "name": "默认",
+          "columns": [
+            {
+              "title": "ID",
+              "dataIndex": "id",
+              "hideInTable": true
+            },
+            {
+              "link": "/classroom/edit/#{id}",
+              "title": "教室名称",
+              "width": "150px",
+              "dataIndex": "name",
+              "hideInTable": false
+            },
+            {
+              "title": "教室号",
+              "width": "120px",
+              "dataIndex": "code",
+              "hideInTable": false
+            },
+            {
+              "title": "容量",
+              "width": "90px",
+              "dataIndex": "capacity",
+              "hideInTable": false
+            },
+            {
+              "title": "教室类型",
+              "width": "120px",
+              "dataIndex": "typeName",
+              "hideInTable": false
+            },
+            {
+              "title": "设备配置",
+              "width": "290px",
+              "dataIndex": "deviceNames",
+              "hideInTable": false
+            },
+            {
+              "title": "操作",
+              "dataIndex": "_panel",
+              "menusItems": [
+                {
+                  "key": "disable",
+                  "text": "移除",
+                  "color": "#cf1322",
+                  "eventName": "DELETE",
+                  "popConfirm": {
+                    "title": "确认移除此设备？",
+                    "okText": "是",
+                    "cancelText": "否"
+                  }
+                }
+              ],
+              "hideInTable": false
+            }
+          ]
+        }
+      ],
+      "component": "Table",
+      "searchForm": [
+        {
+          "key": "name",
+          "title": "教室名称",
+          "width": 200,
+          "dataIndex": "name"
+        },
+        {
+          "key": "code",
+          "title": "教室编号",
+          "width": 200,
+          "dataIndex": "code"
+        }
+      ],
+      "searchConfig": {
+        "code": "BASIC_CLASSROOM_INFO"
+      }
+    }
+  ]
+}

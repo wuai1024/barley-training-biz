@@ -1,0 +1,7 @@
+sourceType: DEFAULT
+script: |
+  SELECT 'L' AS value,'录播' AS label 
+  UNION ALL
+  SELECT 'S' AS value,'摄像' AS label
+scriptCount:
+config:

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration monitorInterval="30">
+    <properties>
+        <property name="LOG_HOME">logs</property>
+        <property name="FILE_NAME">${env:APPLICATION_NAME:-catalina}</property>
+    </properties>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout
+                    pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight{%5.5level} %style{%-4pid}{Magenta} --- [%20.20t] %style{%-24.-24c{1.}}{cyan} : %msg%n"/>
+        </Console>
+        <RollingFile name="RollingFile" fileName="${LOG_HOME}/${FILE_NAME}.log"
+                     filePattern="${LOG_HOME}/$${date:yyyy-MM}/${FILE_NAME}-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %5.5level %-4pid --- [%20.20t] %-24.-24c{1.} : %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="300MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="5" compressionLevel="1">
+                <Delete basePath="${LOG_HOME}" maxDepth="2">
+                    <IfFileName glob="*/*.log.gz"/>
+                    <IfLastModified age="30D"/>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <!-- Nacos 闭嘴  -->
+        <Logger name="com.alibaba.nacos.client.config.impl.ClientWorker" level="WARN"/>
+        <Logger name="com.alibaba.nacos.client.config.impl.CacheData" level="WARN"/>
+        <Logger name="com.alibaba.nacos.common.ability.discover.NacosAbilityManagerHolder" level="WARN"/>
+        <Logger name="com.alibaba.nacos.common.ability.AbstractAbilityControlManager" level="WARN"/>
+        <Logger name="com.alibaba.nacos.common.remote.client" level="WARN"/>
+        <Logger name="com.alibaba.nacos.client.utils.ConcurrentDiskUtil" level="ERROR"/>
+        <Logger name="com.alibaba.nacos.client.config.impl.Limiter" level="WARN"/>
+        <Logger name="com.alibaba.nacos.client.utils.ParamUtil" level="WARN"/>
+        <Logger name="com.alibaba.nacos.client.config.utils.JvmUtil" level="WARN"/>
+        <Logger name="com.alibaba.nacos.client.config.impl.LocalConfigInfoProcessor" level="WARN"/>
+        <Logger name="com.alibaba.nacos.common.labels" level="WARN"/>
+        <Logger name="com.alibaba.nacos.client.naming.net.NamingProxy" level="WARN"/>
+        <Logger name="com.alibaba.nacos.plugin.auth.spi.client.ClientAuthPluginManager" level="WARN"/>
+        <Logger name="com.alibaba.nacos.client.naming" level="ERROR"/>
+        <!-- Cloud -->
+        <Logger name="com.alibaba.cloud.nacos.discovery.NacosDiscoveryHeartBeatPublisher" level="WARN"/>
+        <Logger name="com.alibaba.cloud.nacos.refresh.NacosContextRefresher" level="WARN"/>
+        <Logger name="com.alibaba.cloud.nacos.client.NacosPropertySourceBuilder" level="ERROR"/>
+        <Logger name="io.netty.resolver.dns.DnsServerAddressStreamProviders" level="ERROR"/>
+        <Logger name="org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker"
+                level="ERROR"/>
+        <Logger name="com.alibaba.nacos.client.auth.ram.identify.CredentialWatcher" level="WARN"/>
+        <!-- Mybatis -->
+        <Logger name="org.mybatis.spring.mapper.ClassPathMapperScanner" level="ERROR"/>
+        <!-- Redisson -->
+        <Logger name="org.redisson.connection.pool.MasterPubSubConnectionPool" level="WARN"/>
+
+        <Root level="INFO">
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+</Configuration>

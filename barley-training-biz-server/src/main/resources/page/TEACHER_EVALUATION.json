@@ -1,0 +1,92 @@
+{
+  "page": [
+    {
+      "columns": [
+        {
+          "key": "01",
+          "name": "默认",
+          "columns": [
+            {
+              "title": "ID",
+              "dataIndex": "id",
+              "hideInTable": true
+            },
+            {
+              "link": "/teacher-evaluation/edit/#{id}",
+              "title": "教师姓名",
+              "width": "150px",
+              "dataIndex": "teacherName",
+              "hideInTable": false
+            },
+            {
+              "title": "项目名称",
+              "width": "150px",
+              "dataIndex": "projectName",
+              "hideInTable": false
+            },
+            {
+              "title": "评估日期",
+              "width": "165px",
+              "dataIndex": "evaluationDate",
+              "hideInTable": false
+            },
+            {
+              "title": "得分",
+              "width": "165px",
+              "dataIndex": "score",
+              "hideInTable": false
+            },
+            {
+              "title": "结果",
+              "width": "90px",
+              "dataIndex": "resultName",
+              "hideInTable": false,
+              "renderContent": [
+                {
+                  "content": "<span style=\"color: #389e0d\">#{value}</span>",
+                  "condition": "record.result === 'PASS'"
+                },
+                {
+                  "content": "<span style=\"color: #cf1322\">#{value}</span>",
+                  "condition": "record.result === 'NOT_PASS'"
+                }
+              ]
+            },
+            {
+              "title": "操作",
+              "dataIndex": "_panel",
+              "menusItems": [
+                {
+                  "key": "delete",
+                  "text": "移除",
+                  "color": "#cf1322",
+                  "eventName": "DELETE",
+                  "popConfirm": {
+                    "title": "确认移除此记录吗？",
+                    "okText": "是",
+                    "cancelText": "否"
+                  }
+                }
+              ],
+              "hideInTable": false
+            }
+          ]
+        }
+      ],
+      "component": "Table",
+      "searchForm": [
+        {
+          "key": "teacherId",
+          "title": "教师",
+          "width": 200,
+          "dataIndex": "teacherId",
+          "valueCode": "BASIC_TEACHER_LIST",
+          "valueType": "select"
+        }
+      ],
+      "searchConfig": {
+        "code": "BASIC_TEACHER_EVALUATION"
+      }
+    }
+  ]
+}

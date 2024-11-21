@@ -1,0 +1,32 @@
+sourceType: DEFAULT
+script: |
+  SELECT
+    t1.id,
+    t1.teacher_id AS teacherId,
+    t3.name AS teacherName,
+    t2.project_name AS projectName,
+    t1.evaluation_date AS evaluationDate,
+    t1.score,
+    t1.result,
+    t1.remarks,
+    CASE t1.result WHEN 'PASS' THEN '通过' WHEN 'NOT_PASS' THEN '拒绝' ELSE '' END AS resultName
+  FROM teacher_evaluation t1
+  LEFT JOIN project t2 on t1.project_id = t2.id
+  LEFT JOIN teacher t3 on t1.teacher_id = t3.id
+  <where>
+    t1.is_delete = 0
+    <if test="params.teacherName != null and params.teacherName != ''">
+      AND t3.name LIKE CONCAT('%', #{params.teacherName}, '%')
+    </if>
+  </where>
+scriptCount: |
+  SELECT count(*) FROM teacher_evaluation t1
+  LEFT JOIN project t2 on t1.project_id = t2.id
+  LEFT JOIN teacher t3 on t1.teacher_id = t3.id
+  <where>
+    t1.is_delete = 0
+    <if test="params.teacherName != null and params.teacherName != ''">
+      AND t3.name LIKE CONCAT('%', #{params.teacherName}, '%')
+    </if>
+  </where>
+config:

@@ -1,0 +1,23 @@
+sourceType: DEFAULT
+script: |
+  SELECT
+    t1.id,
+    t1.reservation_time AS reservationTime,
+    t1.classroom_id AS classroomId,
+    t2.capacity,
+    t1.cycle,
+    t1.duration,
+    t1.start_date AS startDate,
+    t1.end_date AS endDate,
+    t1.reserver_name AS reserverName,
+    t1.reserver_phone AS reserverPhone,
+    t1.purpose,
+    t1.approval_by AS approvalBy,
+    t1.approval_name AS approvalName,
+    t1.approval_status AS approvalStatus,
+    t1.remarks
+  FROM classroom_reservation t1
+  LEFT JOIN classroom_info t2 ON t1.classroom_id = t2.id
+  WHERE t1.id = #{params.id}
+scriptCount:
+config:

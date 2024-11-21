@@ -1,0 +1,35 @@
+sourceType: DEFAULT
+script: |
+  SELECT
+    id AS id,
+    device_name AS deviceName,
+    device_code AS deviceCode,
+    device_type AS deviceType,
+    CASE device_type WHEN 'L' THEN '录播' WHEN 'S' THEN '摄像' ELSE '' END AS deviceTypeName,
+    device_ip AS deviceIp,
+    model AS model,
+    serial_number AS serialNumber,
+    purchase_date AS purchaseDate,
+    remarks AS remarks
+  FROM device_info
+  <where>
+    is_delete = 0
+    <if test="params.deviceCode != null and params.deviceCode != ''">
+      AND device_code LIKE CONCAT('%', #{params.deviceCode}, '%')
+    </if>
+    <if test="params.deviceIp != null and params.deviceIp != ''">
+      AND device_ip LIKE CONCAT('%', #{params.deviceIp}, '%')
+    </if>
+  </where>
+scriptCount: |
+  SELECT COUNT(*) FROM device_info
+  <where>
+    is_delete = 0
+    <if test="params.deviceCode != null and params.deviceCode != ''">
+      AND device_code LIKE CONCAT('%', #{params.deviceCode}, '%')
+    </if>
+    <if test="params.deviceIp != null and params.deviceIp != ''">
+      AND device_ip LIKE CONCAT('%', #{params.deviceIp}, '%')
+    </if>
+  </where>
+config:

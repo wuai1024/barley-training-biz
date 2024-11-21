@@ -1,0 +1,25 @@
+sourceType: DEFAULT
+script: |
+  SELECT
+    t1.id,
+    t1.project_id AS projectId,
+    t2.project_name AS projectName,
+    t1.class_name AS className,
+    t1.class_leader AS classLeader,
+    t1.class_leader_phone AS classLeaderPhone,
+    t1.study_committee AS studyCommittee,
+    t1.study_committee_phone AS studyCommitteePhone,
+    t1.publicity_committee AS publicityCommittee,
+    t1.publicity_committee_phone AS publicityCommitteePhone,
+    t1.discipline_committee AS disciplineCommittee,
+    t1.discipline_committee_phone AS disciplineCommitteePhone,
+    t1.life_committee AS lifeCommittee,
+    t1.life_committee_phone AS lifeCommitteePhone,
+    t1.temporary_secretary AS temporarySecretary,
+    t1.temporary_secretary_phone AS temporarySecretaryPhone,
+    t1.remarks
+  FROM project_class t1
+  LEFT JOIN project t2 ON t1.project_id = t2.id
+  WHERE t1.id = #{params.id}
+scriptCount:
+config:

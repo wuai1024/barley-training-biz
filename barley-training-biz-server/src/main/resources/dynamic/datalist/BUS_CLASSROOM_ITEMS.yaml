@@ -1,0 +1,43 @@
+sourceType: DEFAULT
+script: |
+  var data = new java.util.ArrayList();
+  
+  var a1 = new java.util.ArrayList();
+  var aa = new java.util.HashMap();
+  aa.put('key', '001');
+  aa.put('label', '右侧摄像头');
+  a1.add(aa);
+  
+  var bb = new java.util.HashMap();
+  bb.put('key', '002');
+  bb.put('label', '左侧摄像头');
+  a1.add(bb);
+  
+  var item = new java.util.HashMap();
+  item.put('key', '00');
+  item.put('label', '摄像头');
+  item.put('children', a1);
+  data.add(item);
+  
+  
+  var a2 = new java.util.ArrayList();
+  var cc = new java.util.HashMap();
+  cc.put('key', '005');
+  cc.put('label', '黑板录播1');
+  a2.add(cc);
+  
+  var dd = new java.util.HashMap();
+  dd.put('key', '006');
+  dd.put('label', '老师录播2');
+  a2.add(dd);
+  
+  var item2 = new java.util.HashMap();
+  item2.put('key', '01');
+  item2.put('label', '录播设备');
+  item2.put('children', a2);
+  
+  data.add(item2);
+  
+  data;
+scriptCount:
+config:

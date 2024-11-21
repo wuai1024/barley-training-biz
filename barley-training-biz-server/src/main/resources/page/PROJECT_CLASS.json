@@ -1,0 +1,116 @@
+{
+  "page": [
+    {
+      "columns": [
+        {
+          "key": "01",
+          "name": "默认",
+          "columns": [
+            {
+              "title": "ID",
+              "dataIndex": "id",
+              "hideInTable": true
+            },
+            {
+              "title": "培训项目",
+              "width": "150px",
+              "dataIndex": "projectName",
+              "hideInTable": false
+            },
+            {
+              "title": "培训班名称",
+              "width": "150px",
+              "dataIndex": "className",
+              "hideInTable": false
+            },
+            {
+              "title": "班主任",
+              "width": "150px",
+              "dataIndex": "classHeader",
+              "hideInTable": false
+            },
+            {
+              "title": "班长",
+              "width": "150px",
+              "dataIndex": "classLeader",
+              "hideInTable": false
+            },
+            {
+              "title": "学习委员",
+              "width": "150px",
+              "dataIndex": "studyCommittee",
+              "hideInTable": false
+            },
+            {
+              "title": "宣传委员",
+              "width": "150px",
+              "dataIndex": "publicityCommittee",
+              "hideInTable": false
+            },
+            {
+              "title": "纪律委员",
+              "width": "150px",
+              "dataIndex": "disciplineCommittee",
+              "hideInTable": false
+            },
+            {
+              "title": "生活委员",
+              "width": "150px",
+              "dataIndex": "lifeCommittee",
+              "hideInTable": false
+            },
+            {
+              "title": "临时书记",
+              "width": "150px",
+              "dataIndex": "temporarySecretary",
+              "hideInTable": false
+            },
+            {
+              "title": "操作",
+              "dataIndex": "_panel",
+              "menusItems": [
+                {
+                  "key": "edit",
+                  "text": "编辑",
+                  "eventName": "EDIT"
+                },
+                {
+                  "key": "delete",
+                  "text": "移除",
+                  "color": "#cf1322",
+                  "eventName": "DELETE",
+                  "popConfirm": {
+                    "title": "确认移除此记录吗？",
+                    "okText": "是",
+                    "cancelText": "否"
+                  }
+                }
+              ],
+              "hideInTable": false
+            }
+          ]
+        }
+      ],
+      "component": "Table",
+      "searchForm": [
+        {
+          "key": "projectId",
+          "title": "培训项目",
+          "width": 200,
+          "dataIndex": "projectId",
+          "valueCode": "BASIC_PROJECT_LIST",
+          "valueType": "select"
+        },
+        {
+          "key": "className",
+          "title": "培训班名称",
+          "width": 200,
+          "dataIndex": "className"
+        }
+      ],
+      "searchConfig": {
+        "code": "BUS_PROJECT_CLASS"
+      }
+    }
+  ]
+}

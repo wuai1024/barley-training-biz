@@ -1,0 +1,16 @@
+sourceType: DEFAULT
+script: |
+  SELECT
+    tc.id,
+    tc.teacher_id AS teacherId,
+    t.name AS teacherName,
+    tc.certificate_code AS certificateCode,
+    tc.certificate_name AS certificateName,
+    tc.issuing_authority AS issuingAuthority,
+    tc.acquisition_date AS acquisitionDate,
+    tc.remarks
+  FROM teacher_certificate tc
+  JOIN teacher t ON t.id = tc.teacher_id
+  WHERE tc.id = #{params.id}
+scriptCount:
+config:

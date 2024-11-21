@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="referrer" content="always">
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <meta http-equiv="default-style" content="on">
+  <meta name="description" content="大麦教育">
+  <title>课程详情</title>
+  <link rel="stylesheet" href="../../static/video-js.css">
+  <script src="../static/js/video.min.js"></script>
+  <script type="text/javascript" src="https://res.wx.qq.com/t/wx_fed/weui.js/res/1.2.21/weui.min.js"></script>
+  <link rel="stylesheet" href="../../static/common.css">
+  <style>
+      .video {
+          width: 100%;
+          min-height: 210px;
+          background-color: #000;
+          display: block;
+      }
+
+      .video > .container {
+          display: none;
+      }
+
+      .content {
+          padding: 10px 12px;
+      }
+  </style>
+</head>
+<body data-weui-theme="light">
+<div class="video">
+  <div class="container">
+    <video
+        id="course-video"
+        class="video-js"
+        style="object-fit: fill"
+        webkit-playsinline="true"
+        x-webkit-airplay="true"
+        playsinline="true"
+        x5-video-player-type="h5"
+        x5-video-orientation="h5"
+        x5-video-player-fullscreen="true"
+        controls
+        preload="auto"
+        data-setup="{}">
+      <source src="../../static/aliyunmedia.mp4" type="video/mp4"/>
+    </video>
+  </div>
+</div>
+<div class="tabs">
+  <div class="item">课程简介</div>
+</div>
+<div class="content">
+  鸿蒙OS的使用以及编译机的调试
+</div>
+<script type="text/javascript">
+    var player = videojs('course-video');
+    // 动态设置播放器宽度为 100%
+    player.ready(function () {
+        // 获取视频的原始宽度和高度
+        var videoWidth = player.videoWidth();
+        var videoHeight = player.videoHeight();
+
+        // 获取容器的宽度（通常是窗口的宽度）
+        var containerWidth = document.body.clientWidth;
+
+        // 根据视频宽高比例设置播放器的高度
+        var aspectRatio = videoHeight / videoWidth;
+        var newHeight = containerWidth * aspectRatio;
+
+        // 动态设置播放器的宽高
+        player.width(containerWidth);
+        player.height(newHeight);
+
+        setTimeout(() => {
+            document.querySelector('.video > .container').style.display = 'block';
+        }, 200);
+    });
+</script>
+</body>
+</html>

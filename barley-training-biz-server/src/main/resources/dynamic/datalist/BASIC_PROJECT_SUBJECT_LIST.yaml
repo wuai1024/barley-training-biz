@@ -1,0 +1,5 @@
+sourceType: DEFAULT
+script: |
+  SELECT subject_id AS value, subject_name AS label FROM project_subject WHERE is_delete = 0
+scriptCount:
+config:

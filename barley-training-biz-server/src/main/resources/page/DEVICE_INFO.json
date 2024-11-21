@@ -1,0 +1,98 @@
+{
+  "page": [
+    {
+      "columns": [
+        {
+          "key": "01",
+          "name": "默认",
+          "columns": [
+            {
+              "title": "ID",
+              "dataIndex": "id",
+              "hideInTable": true
+            },
+            {
+              "link": "/device-info/edit/#{id}",
+              "title": "设备编号",
+              "width": "150px",
+              "dataIndex": "deviceCode",
+              "hideInTable": false
+            },
+            {
+              "title": "设备名称",
+              "width": "150px",
+              "dataIndex": "deviceName",
+              "hideInTable": false
+            },
+            {
+              "title": "设备类型",
+              "width": "150px",
+              "dataIndex": "deviceTypeName",
+              "hideInTable": false
+            },
+            {
+              "title": "设备IP",
+              "width": "150px",
+              "dataIndex": "deviceIp",
+              "hideInTable": false
+            },
+            {
+              "title": "型号",
+              "width": "150px",
+              "dataIndex": "model",
+              "hideInTable": false
+            },
+            {
+              "title": "序列号",
+              "width": "160px",
+              "dataIndex": "serialNumber",
+              "hideInTable": false
+            },
+            {
+              "title": "购买日期",
+              "width": "165px",
+              "dataIndex": "purchaseDate",
+              "hideInTable": false
+            },
+            {
+              "title": "操作",
+              "dataIndex": "_panel",
+              "menusItems": [
+                {
+                  "key": "disable",
+                  "text": "移除",
+                  "color": "#cf1322",
+                  "eventName": "DELETE",
+                  "popConfirm": {
+                    "title": "确认移除此设备？",
+                    "okText": "是",
+                    "cancelText": "否"
+                  }
+                }
+              ],
+              "hideInTable": false
+            }
+          ]
+        }
+      ],
+      "component": "Table",
+      "searchForm": [
+        {
+          "key": "deviceCode",
+          "title": "设备编号",
+          "width": 200,
+          "dataIndex": "deviceCode"
+        },
+        {
+          "key": "deviceIp",
+          "title": "设备IP",
+          "width": 200,
+          "dataIndex": "deviceIp"
+        }
+      ],
+      "searchConfig": {
+        "code": "Basic-DEVICE_INFO"
+      }
+    }
+  ]
+}

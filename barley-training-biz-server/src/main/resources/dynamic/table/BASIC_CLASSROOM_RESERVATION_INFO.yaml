@@ -1,0 +1,42 @@
+sourceType: DEFAULT
+script: |
+  SELECT
+    t1.id,
+    t1.reservation_time AS reservationTime,
+    t2.name AS classRoomName,
+    t2.capacity,
+    t1.cycle,
+    CASE t1.cycle WHEN 'DAY' THEN '每天' WHEN 'WEEK' THEN '每周' WHEN 'MONTH' THEN '每月' ELSE '' END AS cycleName,
+    t1.duration,
+    t1.start_date AS startDate,
+    t1.end_date AS endDate,
+    t1.reserver_name AS reserverName,
+    t1.reserver_phone AS reserverPhone,
+    t1.purpose,
+    t1.approval_by AS approvalBy,
+    t1.approval_name AS approvalName,
+    t1.approval_status AS approvalStatus
+  FROM classroom_reservation t1
+  LEFT JOIN classroom_info t2 on t1.classroom_id = t2.id
+  <where>
+    t1.is_delete = 0
+    <if test="params.reserverName != null and params.reserverName != ''">
+      AND t1.reserver_name LIKE CONCAT('%', #{params.reserverName}, '%')
+    </if>
+    <if test="params.reserverPhone != null and params.reserverPhone != ''">
+      AND t1.reserver_phone LIKE CONCAT('%', #{params.reserverPhone}, '%')
+    </if>
+  </where>
+scriptCount: |
+  SELECT count(*) FROM classroom_reservation t1
+  LEFT JOIN classroom_info t2 on t1.classroom_id = t2.id
+  <where>
+    t1.is_delete = 0
+    <if test="params.reserverName != null and params.reserverName != ''">
+      AND t1.reserver_name LIKE CONCAT('%', #{params.reserverName}, '%')
+    </if>
+    <if test="params.reserverPhone != null and params.reserverPhone != ''">
+      AND t1.reserver_phone LIKE CONCAT('%', #{params.reserverPhone}, '%')
+    </if>
+  </where>
+config:

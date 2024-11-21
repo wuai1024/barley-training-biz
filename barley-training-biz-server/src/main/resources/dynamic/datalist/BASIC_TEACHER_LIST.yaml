@@ -1,0 +1,5 @@
+sourceType: DEFAULT
+script: |
+  SELECT id AS value, name AS label FROM teacher WHERE is_delete = 0
+scriptCount:
+config:

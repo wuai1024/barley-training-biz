@@ -1,0 +1,21 @@
+sourceType: DEFAULT
+script: |
+  SELECT
+    t1.id,
+    t1.code,
+    t1.name,
+    t1.gender,
+    t1.birth_date AS birthDate,
+    t1.phone AS phone,
+    t1.email,
+    t1.address,
+    t1.education,
+    t1.educational_experience AS educationalExperience,
+    t1.work_experience AS workExperience,
+    t1.title_id AS titleId,
+    t1.images,
+    t1.remarks
+  FROM teacher t1
+  WHERE t1.id = #{params.id}
+scriptCount:
+config:

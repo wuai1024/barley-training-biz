@@ -1,0 +1,16 @@
+sourceType: DEFAULT
+script: |
+  SELECT
+    id,
+    project_code AS projectCode,
+    project_name AS projectName,
+    start_date AS startDate,
+    end_date AS endDate,
+    hours,
+    project_description AS projectDescription,
+    is_display AS isDisplay,
+    remarks
+  FROM project
+  WHERE id = #{params.id}
+scriptCount:
+config:

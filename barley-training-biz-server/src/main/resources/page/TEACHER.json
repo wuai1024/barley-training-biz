@@ -1,0 +1,116 @@
+{
+  "page": [
+    {
+      "columns": [
+        {
+          "key": "01",
+          "name": "默认",
+          "columns": [
+            {
+              "title": "ID",
+              "dataIndex": "id",
+              "hideInTable": true
+            },
+            {
+              "link": "/teacher/edit/#{id}",
+              "title": "教师名称",
+              "width": "150px",
+              "dataIndex": "teacherName",
+              "hideInTable": false
+            },
+            {
+              "title": "职称",
+              "width": "150px",
+              "dataIndex": "titleName",
+              "hideInTable": false
+            },
+            {
+              "title": "联系方式",
+              "width": "150px",
+              "dataIndex": "phone",
+              "hideInTable": false
+            },
+            {
+              "title": "学历",
+              "width": "150px",
+              "dataIndex": "educationName",
+              "hideInTable": false
+            },
+            {
+              "title": "内外部",
+              "width": "150px",
+              "dataIndex": "inOutDept",
+              "hideInTable": false,
+              "renderContent": [
+                {
+                  "content": "内部",
+                  "condition": "record.inOutDept === 'IN'"
+                },
+                {
+                  "content": "外部",
+                  "condition": "record.inOutDept === 'OUT'"
+                }
+              ]
+            },
+            {
+              "title": "单位名称",
+              "width": "150px",
+              "dataIndex": "organizationName",
+              "hideInTable": false
+            },
+            {
+              "title": "教育",
+              "width": "160px",
+              "dataIndex": "educationalExperience",
+              "hideInTable": false
+            },
+            {
+              "title": "工作经历",
+              "width": "120px",
+              "dataIndex": "workExperience",
+              "hideInTable": false
+            },
+            {
+              "title": "操作",
+              "dataIndex": "_panel",
+              "menusItems": [
+                {
+                  "key": "delete",
+                  "text": "删除",
+                  "color": "#cf1322",
+                  "eventName": "DELETE",
+                  "popConfirm": {
+                    "title": "确认删除此预约？",
+                    "okText": "是",
+                    "cancelText": "否"
+                  }
+                }
+              ],
+              "hideInTable": false
+            }
+          ]
+        }
+      ],
+      "component": "Table",
+      "searchForm": [
+        {
+          "key": "teacherName",
+          "title": "教师名称",
+          "width": 200,
+          "dataIndex": "teacherName"
+        },
+        {
+          "key": "titleId",
+          "title": "职称",
+          "width": 200,
+          "dataIndex": "titleId",
+          "valueCode": "BASIC_TEACHER_TITLE",
+          "valueType": "select"
+        }
+      ],
+      "searchConfig": {
+        "code": "BASIC_TEACHER_INFO"
+      }
+    }
+  ]
+}

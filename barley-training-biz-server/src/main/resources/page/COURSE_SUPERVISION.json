@@ -1,0 +1,102 @@
+{
+  "page": [
+    {
+      "columns": [
+        {
+          "key": "01",
+          "name": "默认",
+          "columns": [
+            {
+              "title": "ID",
+              "dataIndex": "id",
+              "hideInTable": true
+            },
+            {
+              "title": "督导员",
+              "width": "150px",
+              "dataIndex": "supervise",
+              "hideInTable": false
+            },
+            {
+              "title": "联系方式",
+              "width": "150px",
+              "dataIndex": "supervisePhone",
+              "hideInTable": false
+            },
+            {
+              "title": "培训项目",
+              "width": "150px",
+              "dataIndex": "projectName",
+              "hideInTable": false
+            },
+            {
+              "title": "培训班名称",
+              "width": "150px",
+              "dataIndex": "className",
+              "hideInTable": false
+            },
+            {
+              "title": "日期",
+              "width": "150px",
+              "dataIndex": "date",
+              "hideInTable": false
+            },
+            {
+              "title": "时间",
+              "width": "165px",
+              "dataIndex": "time",
+              "hideInTable": false
+            },
+            {
+              "title": "培训内容",
+              "width": "160px",
+              "dataIndex": "trainingContent",
+              "hideInTable": false
+            },
+            {
+              "title": "培训形式",
+              "width": "165px",
+              "dataIndex": "trainingFormName",
+              "hideInTable": false
+            },
+            {
+              "dataIndex": "_panel",
+              "hideInTable": false
+            }
+          ]
+        }
+      ],
+      "modules": [
+        "EXPORT"
+      ],
+      "component": "Table",
+      "searchForm": [
+        {
+          "key": "projectId",
+          "title": "项目",
+          "width": 200,
+          "dataIndex": "projectId",
+          "valueCode": "BASIC_PROJECT_LIST",
+          "valueType": "select"
+        },
+        {
+          "key": "classId",
+          "title": "培训班名称",
+          "width": 200,
+          "dataIndex": "classId",
+          "valueCode": "BASIC_PROJECT_CLASS_LIST",
+          "valueType": "select"
+        },
+        {
+          "key": "supName",
+          "title": "姓名",
+          "width": 200,
+          "dataIndex": "supName"
+        }
+      ],
+      "searchConfig": {
+        "code": "BUS_COURSE_SUPERVISION"
+      }
+    }
+  ]
+}
