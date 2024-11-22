@@ -1,7 +1,7 @@
 package com.barley.training.biz.entity;
 
-import com.barley.training.biz.entity.ext.ArrayLongExt;
 import com.barley.common.datasource.BaseEntity;
+import com.barley.training.biz.entity.ext.ArrayLongExt;
 import lombok.Getter;
 import lombok.Setter;
 

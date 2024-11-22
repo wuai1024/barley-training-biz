@@ -14,6 +14,7 @@ public class ViewController {
     public ModelAndView project() {
         return new ModelAndView("training/project");
     }
+
     @GetMapping("/course")
     public ModelAndView course() {
         return new ModelAndView("training/course");

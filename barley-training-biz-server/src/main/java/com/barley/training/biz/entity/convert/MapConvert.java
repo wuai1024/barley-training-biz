@@ -1,7 +1,7 @@
 package com.barley.training.biz.entity.convert;
 
-import com.barley.training.biz.entity.ext.MapExt;
 import com.barley.common.datasource.JsonTypeHandler;
+import com.barley.training.biz.entity.ext.MapExt;
 
 public class MapConvert extends JsonTypeHandler<MapExt> {
     @Override

@@ -2,11 +2,16 @@ package com.barley.training.biz.service.impl;
 
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.barley.common.auth.session.SessionService;
+import com.barley.common.base.LoginUser;
+import com.barley.training.biz.constant.UscResponseCode;
 import com.barley.training.biz.entity.SysUser;
 import com.barley.training.biz.entity.ext.ArrayStringExt;
 import com.barley.training.biz.mapper.SysUserMapper;
 import com.barley.training.biz.service.SysUserService;
 import com.barley.training.biz.service.convert.SysUserConvertMapper;
+import com.barley.training.stub.biz.bean.UserDTO;
+import com.barley.training.stub.biz.request.AuthRequest;
 import com.barley.training.stub.biz.request.SysUserRequest;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -16,12 +21,15 @@ import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 import static com.barley.common.base.constants.Constants.LIMIT_1;
 
 @Service
 @RequiredArgsConstructor
 public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements SysUserService {
+    private final SessionService sessionService;
 
     @Override
     public SysUser getById(Serializable id) {
@@ -36,6 +44,31 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         return super.getById(id);
     }
 
+
+    @Override
+    public UserDTO login(AuthRequest request) {
+        final SysUser sysUser = this.lambdaQuery().eq(SysUser::getAccount, request.getAccount())
+                .eq(SysUser::getPassword, DigestUtils.md5Hex(request.getPassword()))
+                .last(LIMIT_1)
+                .one();
+        if (Objects.isNull(sysUser)) {
+            throw UscResponseCode.ERROR.newException("账号或者密码错误！");
+        }
+        final String userId = sysUser.getUserStringId();
+        final String token = UUID.randomUUID().toString().replaceAll("-", "");
+        final LoginUser loginUser = new LoginUser();
+        loginUser.setId(userId);
+        loginUser.setCompanyName("默认企业");
+        loginUser.setAvatar("/avatar.png");
+        final UserDTO user = new UserDTO();
+        user.setId(userId);
+        user.setAccessToken(token);
+
+        // 保存到会话
+        sessionService.saveToken(token, userId, 3, TimeUnit.DAYS);
+        sessionService.saveUserSession(userId, loginUser, 3, TimeUnit.DAYS);
+        return user;
+    }
 
     @Override
     public boolean saveBy(SysUserRequest request) {

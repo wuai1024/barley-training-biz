@@ -1,9 +1,9 @@
 package com.barley.training.biz.controller;
 
+import com.barley.common.base.response.ResponseData;
 import com.barley.training.biz.service.TeacherService;
 import com.barley.training.stub.biz.facade.TeacherFacade;
 import com.barley.training.stub.biz.request.TeacherRequest;
-import com.barley.common.base.response.ResponseData;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

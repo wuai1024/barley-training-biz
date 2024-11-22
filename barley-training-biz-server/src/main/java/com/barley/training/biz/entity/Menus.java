@@ -1,22 +1,19 @@
 package com.barley.training.biz.entity;
 
 import com.barley.common.datasource.BaseEntity;
-import com.barley.training.biz.entity.ext.MapsExt;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
 
-/**
- * 师资信息
- */
 @Setter
 @Getter
-public class TeacherTitle extends BaseEntity implements Serializable {
-
+public class Menus extends BaseEntity implements Serializable {
     private Long id;
+    private String parentCode;
     private String code;
+    private String path;
     private String name;
-    private MapsExt config;
-
+    private String icon;
+    private Integer sort;
 }
