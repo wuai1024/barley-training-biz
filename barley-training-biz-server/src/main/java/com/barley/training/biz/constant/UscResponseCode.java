@@ -21,9 +21,4 @@ public enum UscResponseCode implements ResponseCodeException {
         return this.name();
     }
 
-    @Override
-    public String getModule() {
-        return "billbear-supply-chain";
-    }
-
 }
