@@ -12,7 +12,7 @@
               "hideInTable": true
             },
             {
-              "link": "/classroom-reservation/edit/#{id}",
+              "link": "/admin/classroom-reservation/edit/#{id}",
               "title": "教室名称",
               "width": "120px",
               "dataIndex": "classRoomName",

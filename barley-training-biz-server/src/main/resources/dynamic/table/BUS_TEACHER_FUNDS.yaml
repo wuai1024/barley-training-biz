@@ -1,4 +1,4 @@
-sourceType: DEFAULT
+sourceType: '#JAVASCRIPT'
 script: |
   var result = mybatis.query('BARLEY_TRAINING', pair.get('BUS_TEACHER_FUNDS'), params);
   var teacherTitleList = mybatis.query('BARLEY_TRAINING', pair.get('BASIC_TEACHER_TITLE_LIST'), params);

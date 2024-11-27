@@ -11,11 +11,7 @@ script: |
   FROM classroom_info
   WHERE id = #{params.id}
 scriptCount:
-config: |
-  {
-    "type": {
-      "objectField": [
-        "device"
-      ]
-    }
-  }
+config:
+  type:
+    objectField:
+      - device

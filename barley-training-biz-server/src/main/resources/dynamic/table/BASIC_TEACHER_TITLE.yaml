@@ -26,11 +26,7 @@ scriptCount: |
       AND name LIKE CONCAT('%', #{params.name}, '%')
     </if>
   </where>
-config: |
-  {
-    "type": {
-      "objectField": [
-        "config"
-      ]
-    }
-  }
+config:
+  type:
+    objectField:
+      - config

@@ -12,7 +12,7 @@
               "hideInTable": true
             },
             {
-              "link": "/teacher/edit/#{id}",
+              "link": "/admin/teacher/edit/#{id}",
               "title": "教师名称",
               "width": "150px",
               "dataIndex": "teacherName",

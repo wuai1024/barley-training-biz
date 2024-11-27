@@ -1,4 +1,4 @@
-sourceType: DEFAULT
+sourceType: '#JAVASCRIPT'
 script: |
   var data = new java.util.ArrayList();
   

@@ -12,7 +12,7 @@
               "hideInTable": true
             },
             {
-              "link": "/device-info/edit/#{id}",
+              "link": "/admin/device-info/edit/#{id}",
               "title": "设备编号",
               "width": "150px",
               "dataIndex": "deviceCode",

@@ -12,7 +12,7 @@
               "hideInTable": true
             },
             {
-              "link": "/teacher-evaluation/edit/#{id}",
+              "link": "/admin/teacher-evaluation/edit/#{id}",
               "title": "教师姓名",
               "width": "150px",
               "dataIndex": "teacherName",
