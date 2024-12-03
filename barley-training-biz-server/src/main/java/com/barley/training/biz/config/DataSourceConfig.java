@@ -20,8 +20,7 @@ public class DataSourceConfig implements DataSourceFactory {
         hikariConfig.setJdbcUrl(properties.getUrl());
         hikariConfig.setUsername(properties.getUsername());
         hikariConfig.setPassword(properties.getPassword());
-        hikariConfig.setMaximumPoolSize(30);
-        log.info("HikariConfig: {}", properties);
+        hikariConfig.setMaximumPoolSize(5);
         return hikariConfig;
     }
 }
