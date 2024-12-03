@@ -1,7 +1,9 @@
 sourceType: '#JAVASCRIPT'
 script: |
-  var result = mybatis.query('BARLEY_TRAINING', pair.get('BUS_TEACHER_FUNDS'), params);
-  var teacherTitleList = mybatis.query('BARLEY_TRAINING', pair.get('BASIC_TEACHER_TITLE_LIST'), params);
+  var sql = params.get('variable').get('BUS_TEACHER_FUNDS');
+  var result = mybatis.query('DEFAULT', sql, params);
+  var sql = params.get('variable').get('BASIC_TEACHER_TITLE_LIST');
+  var teacherTitleList = mybatis.query('DEFAULT', sql, params);
   
   function v(obj) {
     return obj == null ? '' : obj.toString();
@@ -44,6 +46,70 @@ script: |
   }
   result
 scriptCount: |
-  var result = mybatis.queryObject('BARLEY_TRAINING', pair.get('BUS_TEACHER_FUNDS_COUNT'), params);
+  var sql = params.get('variable').get('BUS_TEACHER_FUNDS_COUNT');
+  var result = mybatis.queryObject('BARLEY_TRAINING', sql, params);
   result
 config:
+  BASIC_TEACHER_TITLE_LIST: |
+    SELECT 
+      id,
+      jt.price,
+      jt.hour
+    FROM  teacher_title, JSON_TABLE(config, '$[*]' COLUMNS (
+            hour INT PATH '$.hour',
+            price DECIMAL(18, 4) PATH '$.price'
+        )) AS jt
+    ORDER BY jt.hour ASC
+  BUS_TEACHER_FUNDS: |
+    SELECT 
+      temp.*,
+      t2.project_name AS projectName, 
+      t3.title_id AS titleId,
+      t3.name AS teacherName,
+      t4.class_name AS className,
+      t5.`name` AS titleName
+    FROM (
+      SELECT
+      t1.project_id AS projectId,
+      t1.class_id AS classId,
+      t1.teacher_id AS teacherId,
+      SUM(t1.hours) AS totalHours
+      FROM course t1
+      WHERE t1.is_delete = 0
+      <if test="params.teacherId != null and params.teacherId != ''">
+      AND t1.teacher_id = #{params.teacherId}
+      </if>
+      <if test="params.classId != null and params.classId != ''">
+      AND t1.class_id = #{params.classId}
+      </if>
+      <if test="params.projectId != null and params.projectId != ''">
+      AND t1.project_id LIKE CONCAT('%', #{params.projectId}, '%')
+      </if>
+      GROUP BY t1.project_id, t1.class_id, t1.teacher_id
+    ) temp
+    LEFT JOIN project t2 ON temp.projectId = t2.id
+    LEFT JOIN teacher t3 ON temp.teacherId = t3.id
+    LEFT JOIN project_class t4 ON temp.classId = t4.id
+    LEFT JOIN teacher_title t5 ON t3.title_id = t5.id
+
+
+  BUS_TEACHER_FUNDS_COUNT: |
+    SELECT 
+        COUNT(*)
+    FROM
+    (
+        SELECT 
+            t1.project_id AS projectId,
+            t1.class_id AS classId,
+            t1.teacher_id AS teacherId,
+            SUM(t1.hours) AS totalHours
+        FROM course t1 
+        WHERE t1.is_delete = 0
+        <if test="params.teacherId != null and params.teacherId != ''">
+            AND t1.teacher_id = #{params.teacherId}
+        </if>
+       <if test="params.projectId != null and params.projectId != ''">
+            AND t1.project_id LIKE CONCAT('%', #{params.projectId}, '%')
+        </if>
+        GROUP BY t1.project_id, t1.class_id, t1.teacher_id
+    ) temp
