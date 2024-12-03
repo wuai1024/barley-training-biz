@@ -93,6 +93,11 @@
             <groupId>org.openjdk.nashorn</groupId>
             <artifactId>nashorn-core</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.barley</groupId>
+            <artifactId>barley-common-filecenter-facade-stub</artifactId>
+            <version>4.1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>
