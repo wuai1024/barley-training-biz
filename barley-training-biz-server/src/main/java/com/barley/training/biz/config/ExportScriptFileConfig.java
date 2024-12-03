@@ -12,6 +12,12 @@ import java.util.concurrent.ConcurrentHashMap;
 public class ExportScriptFileConfig {
     private static final ConcurrentHashMap<String, FileConfig> CACHE = new ConcurrentHashMap<>();
 
+    /**
+     * 获取配置.
+     *
+     * @param code 代码.
+     * @return 文件配置.
+     */
     public FileConfig get(String code) {
         final String codeType = code.toUpperCase().replaceAll("-", "_");
         return CACHE.computeIfAbsent(code, key -> {

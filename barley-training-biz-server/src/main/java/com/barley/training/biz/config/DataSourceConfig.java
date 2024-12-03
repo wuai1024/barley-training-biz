@@ -3,9 +3,11 @@ package com.barley.training.biz.config;
 import com.barley.common.datasource.factory.DataSourceFactory;
 import com.zaxxer.hikari.HikariConfig;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.stereotype.Component;
 
+@Log4j2
 @Component
 @RequiredArgsConstructor
 public class DataSourceConfig implements DataSourceFactory {
@@ -18,6 +20,8 @@ public class DataSourceConfig implements DataSourceFactory {
         hikariConfig.setJdbcUrl(properties.getUrl());
         hikariConfig.setUsername(properties.getUsername());
         hikariConfig.setPassword(properties.getPassword());
+        hikariConfig.setMaximumPoolSize(30);
+        log.info("HikariConfig: {}", properties);
         return hikariConfig;
     }
 }
