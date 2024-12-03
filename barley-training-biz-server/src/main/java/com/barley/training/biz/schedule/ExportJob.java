@@ -14,20 +14,25 @@ import java.util.Locale;
 public class ExportJob {
     private final ExportTaskService exportTaskService;
 
+    private boolean isLinux() {
+        final String osName = System.getProperty("os.name").toLowerCase(Locale.ROOT);
+        return osName.contains("nux") || osName.contains("nix");
+    }
+
     /**
      * 导出的定时任务轮询.
      */
     @Scheduled(fixedDelay = 5000)
     public void exportTask() {
-        final String osName = System.getProperty("os.name").toLowerCase(Locale.ROOT);
-        if (osName.contains("nux") || osName.contains("nix")) {
-            final List<ExportTask> exportTaskList = exportTaskService.getTaskList(15);
-            if (exportTaskList.isEmpty()) {
-                return;
-            }
-            for (ExportTask exportTask : exportTaskList) {
-                exportTaskService.export(exportTask);
-            }
+        if (isLinux()) {
+            return;
+        }
+        final List<ExportTask> exportTaskList = exportTaskService.getTaskList(15);
+        if (exportTaskList.isEmpty()) {
+            return;
+        }
+        for (ExportTask exportTask : exportTaskList) {
+            exportTaskService.export(exportTask);
         }
     }
 }
