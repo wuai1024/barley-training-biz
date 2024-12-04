@@ -17,8 +17,13 @@ import com.barley.training.stub.biz.bean.ExportTaskDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
+import org.apache.commons.io.IOUtils;
 import org.springframework.stereotype.Service;
 
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
@@ -73,32 +78,40 @@ public class ExportTaskServiceImpl extends ServiceImpl<ExportTaskMapper, ExportT
         }
         final String fileName = task.getId() + "_" + System.currentTimeMillis() + ".xlsx";
         final String templateName = task.getId() + "_" + System.currentTimeMillis() + "_template.xlsx";
+        final String template = Objects.toString(fileConfig.getConfig().get("template"));
         try (FileCenterTempFile tempFile = FileCenterUtils.createTempFile(fileName)) {
-//            try (FileCenterTempFile templateFile = FileCenterUtils.createTempFile(templateName)) {
-//
-//            }
-            exportService.export(fileConfig.getScript(), fileConfig.getConfig(), params, null, tempFile.getFile(), (status, ex) -> {
-                final String s3Path = fileName;
-                if (status) {
-                    // 导出成功
-                    log.info("[导出任务] 导出成功(任务: {}), 文件路径: {}", task.getId(), s3Path);
-                    this.lambdaUpdate().eq(ExportTask::getId, task.getId())
-                            .set(ExportTask::getStatus, ExportTaskStatusEnum.COMPLETED.getCode())
-                            .set(ExportTask::getUrl, s3Path)
-                            .last(LIMIT_1)
-                            .update();
-                } else {
-                    log.error("[导出任务] 失败: {}", ex.getMessage(), ex);
-                    this.lambdaUpdate().eq(ExportTask::getId, task.getId())
-                            .set(ExportTask::getStatus, ExportTaskStatusEnum.ERROR.getCode())
-                            .set(ExportTask::getMessage, ex.getMessage())
-                            .last(LIMIT_1)
-                            .update();
-                    throw ex;
+            try (FileCenterTempFile templateFile = FileCenterUtils.createTempFile(templateName)) {
+                try (InputStream inputStream = this.getClass().getResourceAsStream("/xlsx/" + template)) {
+                    if (Objects.isNull(inputStream)) {
+                        throw UscResponseCode.ERROR.newException("模板不存在");
+                    }
+                    try (FileOutputStream fos = new FileOutputStream(templateFile.getFile())) {
+                        IOUtils.copy(inputStream, fos);
+                    }
                 }
-                return true;
-            });
+                exportService.export(fileConfig.getScript(), fileConfig.getConfig(), params, templateFile.getFile(), tempFile.getFile(), (status, ex) -> {
+                    if (status) {
+                        final String s3Path = "./" + fileName;
+                        Files.copy(tempFile.getFile().toPath(), Paths.get(s3Path));
+                        // 导出成功
+                        log.info("[导出任务] 导出成功(任务: {}), 文件路径: {}", task.getId(), s3Path);
+                        this.lambdaUpdate().eq(ExportTask::getId, task.getId())
+                                .set(ExportTask::getStatus, ExportTaskStatusEnum.COMPLETED.getCode())
+                                .set(ExportTask::getUrl, s3Path)
+                                .last(LIMIT_1)
+                                .update();
+                    } else {
+                        log.error("[导出任务] 失败: {}", ex.getMessage(), ex);
+                        this.lambdaUpdate().eq(ExportTask::getId, task.getId())
+                                .set(ExportTask::getStatus, ExportTaskStatusEnum.ERROR.getCode())
+                                .set(ExportTask::getMessage, ex.getMessage())
+                                .last(LIMIT_1)
+                                .update();
+                        throw ex;
+                    }
+                    return true;
+                });
+            }
         }
-
     }
 }
