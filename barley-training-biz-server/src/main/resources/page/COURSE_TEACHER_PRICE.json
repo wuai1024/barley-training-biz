@@ -63,6 +63,12 @@
       "modules": [
         "EXPORT"
       ],
+      "exportConfig": [
+        {
+          "code": "COURSE_TEACHER_PRICE_EXPORT",
+          "label": "教师酬金计算"
+        }
+      ],
       "component": "Table",
       "searchForm": [
         {

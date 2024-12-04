@@ -2,6 +2,7 @@ package com.barley.training.biz.controller;
 
 import com.barley.common.base.JsonUtils;
 import com.barley.common.base.response.ResponseData;
+import com.barley.training.biz.service.PageService;
 import com.barley.training.stub.biz.facade.PageFacade;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -16,15 +17,10 @@ import java.util.Objects;
 @RequestMapping(PageFacade.URL)
 @RequiredArgsConstructor
 public class PageController implements PageFacade {
+    private final PageService pageService;
     @Override
     @SneakyThrows
     public ResponseData<?> get(String code) {
-        code = code.toUpperCase().replaceAll("-", "_");
-        try (InputStream inputStream = this.getClass().getResourceAsStream("/page/" + code + ".json")) {
-            if (Objects.isNull(inputStream)) {
-                return ResponseData.SUCCESS();
-            }
-            return ResponseData.SUCCESS(JsonUtils.parse(new String(inputStream.readAllBytes(), StandardCharsets.UTF_8)));
-        }
+        return ResponseData.SUCCESS(pageService.get(code));
     }
 }

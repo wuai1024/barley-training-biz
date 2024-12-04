@@ -1,0 +1,42 @@
+sourceType: '#JAVASCRIPT'
+script: |
+  function value(data) {
+    return data == null ? '' : utils.valueToString(data);
+  }
+  // 读取
+  var workbook = excel.readTemplate();
+  // 读取sheet 页
+  var sheet = workbook.getSheetAt(0);
+  
+  // 查询数据
+  var request = new com.barley.common.datasource.SearchRequest();
+  request.setParams(params);
+  var dataList = queryService.queryPage('BUS_TEACHER_FUNDS', request).getRecords();
+  
+  // 写入数据
+  for(var p = 0; p < dataList.length; p++) {
+    var dataItem = dataList.get(p);
+    var row = sheet.getRow(1 + p);
+    if (row == null) {
+        row = sheet.createRow(1 + p);
+    }
+    // 表示你有多少列
+    for (var i = 0; i < 7; i++ ) {
+        if (row.getCell(i) == null) {
+            row.createCell(i).setCellValue('');
+        }
+    }
+    row.getCell(0).setCellValue(value(dataItem.get('projectName')));
+    row.getCell(1).setCellValue(value(dataItem.get('className')));
+    row.getCell(2).setCellValue(value(dataItem.get('teacherName')));
+    row.getCell(3).setCellValue(value(dataItem.get('titleName')));
+    row.getCell(4).setCellValue(value(dataItem.get('totalHours')));
+    row.getCell(5).setCellValue(value(dataItem.get('price')));
+    row.getCell(6).setCellValue(value(dataItem.get('income')));
+  }
+  
+  // 保存
+  excel.save(workbook);
+scriptCount:
+config:
+  template: COURSE_TEACHER_PRICE_EXPORT.xlsx

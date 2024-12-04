@@ -1,6 +1,7 @@
 package com.barley.training.biz.config;
 
 import com.barley.common.datasource.factory.NashornFactory;
+import com.barley.common.datasource.service.LocalQueryCacheService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
@@ -21,7 +22,7 @@ public class NashornConfig implements NashornFactory {
         final Map<String, Object> a = new HashMap<>();
         a.put("utils", new Utils());
 //        a.put("pair", applicationContext.getBean(PairService.class));
-//        a.put("queryService", applicationContext.getBean(QueryService.class));
+        a.put("queryService", applicationContext.getBean(LocalQueryCacheService.class));
         return a;
     }
 

@@ -68,15 +68,6 @@
           ]
         }
       ],
-      "modules": [
-        {
-          "code": "PROJECT_FUNDS_FLOW_EXPORT",
-          "label": "xxxxx导出的文件名"
-        }
-      ],
-      "exportConfig": {
-        "code": ""
-      },
       "component": "Table",
       "searchForm": [
         {
