@@ -35,3 +35,15 @@ spring:
     ignoring:
       - /auth/**
       - /s3/**
+
+barley:
+  filecenter:
+    s3:
+      config:
+        - id: FILES
+          accessKey: muOqkcIr0dzUSot4MU5p
+          secretKey: LdZpTrwAkxnEPaBCxquhDysXY94eFt1nT2DMqUQk
+          bucket: ??????
+          region: cn-shanghai
+          endpoint: http://192.168.5.33:9000
+          external-endpoint: http://192.168.5.33:9000
