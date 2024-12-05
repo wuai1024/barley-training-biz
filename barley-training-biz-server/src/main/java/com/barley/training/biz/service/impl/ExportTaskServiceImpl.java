@@ -90,7 +90,7 @@ public class ExportTaskServiceImpl extends ServiceImpl<ExportTaskMapper, ExportT
                     final String s3Path;
                     try (FileInputStream inputStream = new FileInputStream(tempFile.getFile())) {
                         s3Path = s3Factory.getInstance(Constant.S3_FILE)
-                                .putObject("/report/" + fileName, inputStream);
+                                .putObject("/" + Constant.TRAINING + "/report/" + fileName, inputStream);
                     }
                     // 导出成功
                     log.info("[导出任务] 导出成功(任务: {}), 文件路径: {}", task.getId(), s3Path);
