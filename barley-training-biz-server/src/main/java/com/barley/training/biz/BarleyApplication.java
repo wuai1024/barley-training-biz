@@ -7,6 +7,7 @@ import com.barley.common.datasource.annotation.EnableMyBatisPlus;
 import com.barley.common.redis.annotation.EnableRedisConfig;
 import com.barley.common.webmvc.annotation.EnableGlobalException;
 import com.barley.common.webmvc.annotation.EnableHttpNotNullConverter;
+import com.barley.stub.file.annotation.EnableS3Client;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
 import org.mybatis.spring.annotation.MapperScan;
@@ -14,6 +15,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
+@EnableS3Client
 @EnableMyBatisPlus
 @EnableHttpNotNullConverter
 @EnableGlobalException
