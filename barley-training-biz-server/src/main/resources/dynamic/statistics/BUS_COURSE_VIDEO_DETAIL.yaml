@@ -1,4 +1,4 @@
-sourceType: DEFAULT
+sourceType: '#JAVASCRIPT'
 script: |
   var a = new java.util.HashMap();
   a.put('title', '课程详情2');
