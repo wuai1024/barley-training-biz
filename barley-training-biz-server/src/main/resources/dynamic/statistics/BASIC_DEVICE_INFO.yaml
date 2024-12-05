@@ -15,3 +15,6 @@ script: |
   WHERE id = #{params.id}
 scriptCount:
 config:
+  type:
+    objectField:
+      - images

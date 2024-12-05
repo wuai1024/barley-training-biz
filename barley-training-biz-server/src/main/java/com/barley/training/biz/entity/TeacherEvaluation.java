@@ -1,6 +1,7 @@
 package com.barley.training.biz.entity;
 
 import com.barley.common.datasource.BaseEntity;
+import com.barley.training.biz.entity.ext.ArrayStringExt;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,5 +25,5 @@ public class TeacherEvaluation extends BaseEntity implements Serializable {
     private LocalDate evaluationDate;
     private BigDecimal score;
     private String result;
-    private String images; // JSON representation
+    private ArrayStringExt images; // JSON representation
 }

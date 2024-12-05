@@ -1,6 +1,7 @@
 package com.barley.training.biz.entity;
 
 import com.barley.common.datasource.BaseEntity;
+import com.barley.training.biz.entity.ext.ArrayStringExt;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,5 +28,5 @@ public class Teacher extends BaseEntity implements Serializable {
     private String education;
     private String educationalExperience;
     private String workExperience;
-    private String images;
+    private ArrayStringExt images;
 }

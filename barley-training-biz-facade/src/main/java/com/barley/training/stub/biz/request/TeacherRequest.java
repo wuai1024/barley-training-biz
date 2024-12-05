@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @Schema(description = "老师请求")
@@ -52,7 +53,7 @@ public class TeacherRequest {
     private String workExperience;
 
     @Schema(description = "附件")
-    private String images;
+    private List<String> images;
 
     @Schema(description = "备注")
     private String remarks;

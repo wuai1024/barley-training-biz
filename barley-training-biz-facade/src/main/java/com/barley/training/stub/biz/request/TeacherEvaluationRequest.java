@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @Schema(description = "老师测评请求")
@@ -29,7 +30,7 @@ public class TeacherEvaluationRequest {
     private String result;
 
     @Schema(description = "图片 JSON")
-    private String images; // JSON representation
+    private List<String> images; // JSON representation
 
     @Schema(description = "备注")
     private String remarks;

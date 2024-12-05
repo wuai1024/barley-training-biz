@@ -19,3 +19,6 @@ script: |
   WHERE t1.id = #{params.id}
 scriptCount:
 config:
+  type:
+    objectField:
+      - images
