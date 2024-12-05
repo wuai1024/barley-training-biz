@@ -7,9 +7,11 @@ import com.barley.common.datasource.FileConfig;
 import com.barley.common.datasource.service.ExportService;
 import com.barley.stub.file.FileCenterTempFile;
 import com.barley.stub.file.FileCenterUtils;
+import com.barley.stub.file.s3.S3Factory;
 import com.barley.tools.common.MapPaths;
 import com.barley.training.biz.config.DynamicQueryFileConfig;
 import com.barley.training.biz.config.ExportScriptFileConfig;
+import com.barley.training.biz.constant.Constant;
 import com.barley.training.biz.constant.UscResponseCode;
 import com.barley.training.biz.constant.enums.ExportTaskStatusEnum;
 import com.barley.training.biz.entity.ExportTask;
@@ -27,10 +29,9 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
@@ -46,6 +47,7 @@ public class ExportTaskServiceImpl extends ServiceImpl<ExportTaskMapper, ExportT
     private final ExportScriptFileConfig exportScriptFileConfig;
     private final PageService pageService;
     private final DynamicQueryFileConfig dynamicQueryFileConfig;
+    private final S3Factory s3Factory;
 
 
     @Override
@@ -85,8 +87,11 @@ public class ExportTaskServiceImpl extends ServiceImpl<ExportTaskMapper, ExportT
         try (FileCenterTempFile tempFile = FileCenterUtils.createTempFile(fileName)) {
             var callback = (CheckedFunction2<Boolean, Throwable, Object>) (status, ex) -> {
                 if (status) {
-                    final String s3Path = "./" + fileName;
-                    Files.copy(tempFile.getFile().toPath(), Paths.get(s3Path));
+                    final String s3Path;
+                    try (FileInputStream inputStream = new FileInputStream(tempFile.getFile())) {
+                        s3Path = s3Factory.getInstance(Constant.S3_FILE)
+                                .putObject("/report/" + fileName, inputStream);
+                    }
                     // 导出成功
                     log.info("[导出任务] 导出成功(任务: {}), 文件路径: {}", task.getId(), s3Path);
                     this.lambdaUpdate().eq(ExportTask::getId, task.getId())
