@@ -1,6 +1,5 @@
 package com.barley.training.biz.controller;
 
-import com.barley.common.base.JsonUtils;
 import com.barley.common.base.response.ResponseData;
 import com.barley.training.biz.service.PageService;
 import com.barley.training.stub.biz.facade.PageFacade;
@@ -9,15 +8,12 @@ import lombok.SneakyThrows;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.Objects;
-
 @RestController
 @RequestMapping(PageFacade.URL)
 @RequiredArgsConstructor
 public class PageController implements PageFacade {
     private final PageService pageService;
+
     @Override
     @SneakyThrows
     public ResponseData<?> get(String code) {
