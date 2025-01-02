@@ -1,7 +1,7 @@
 package com.barley.training.biz.schedule;
 
 import com.barley.training.biz.entity.ExportTask;
-import com.barley.training.biz.service.ExportTaskService;
+import com.barley.training.biz.service.admin.ExportTaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;

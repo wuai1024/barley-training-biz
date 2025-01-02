@@ -2,7 +2,7 @@ package com.barley.training.biz.service.convert;
 
 
 import com.barley.training.biz.entity.Menus;
-import com.barley.training.stub.biz.bean.MenusDTO;
+import com.barley.training.stub.biz.bean.admin.MenusDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

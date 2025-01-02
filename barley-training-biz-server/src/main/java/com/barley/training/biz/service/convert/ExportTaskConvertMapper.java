@@ -1,7 +1,7 @@
 package com.barley.training.biz.service.convert;
 
 import com.barley.training.biz.entity.ExportTask;
-import com.barley.training.stub.biz.bean.ExportTaskDTO;
+import com.barley.training.stub.biz.bean.admin.ExportTaskDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
