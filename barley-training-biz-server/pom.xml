@@ -98,6 +98,10 @@
             <artifactId>barley-common-filecenter-facade-stub</artifactId>
             <version>4.1.0-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.barley.media</groupId>
+            <artifactId>pdfium</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

@@ -5,6 +5,7 @@ import com.barley.stub.file.S3TypeEnum;
 import com.barley.stub.file.s3.S3Factory;
 import com.barley.training.biz.constant.Constant;
 import com.barley.training.stub.biz.facade.admin.S3Facade;
+import com.media.pdf.PDFCommand;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
@@ -84,8 +85,12 @@ public class S3Controller implements S3Facade {
             // 保存上传文件
             file.transferTo(cacheFile);
 
-            // 根据文件类型处理
-            final String s3Path = file(instanceId, type, cacheFile);
+            // 如果是PDF 解析文件
+            //noinspection SwitchStatementWithTooFewBranches
+            final String s3Path = switch (suffix) {
+                case "pdf" -> pdf(instanceId, type, cacheFile);
+                default -> file(instanceId, type, cacheFile);
+            };
 
             // 如果需要URL 回显
             if (isUrl) {
@@ -96,6 +101,30 @@ public class S3Controller implements S3Facade {
         } finally {
             if (cacheFile.exists() && cacheFile.delete()) {
                 log.info("[S3] 文件({}-{}), 上传完成自动回收", originalFilename, cacheFile.getAbsoluteFile());
+            }
+        }
+    }
+
+    private String pdf(String instanceId, String type, File cacheFile) throws IOException {
+        final File coverFile = Paths.get(Constant.PUT_CACHE, UUID.randomUUID() + ".jpeg").toFile();
+        try {
+            // 获取封面
+            PDFCommand.toCoverImage(cacheFile.getAbsolutePath(), coverFile.getAbsolutePath());
+            // 上传PDF到S3
+            try (FileInputStream inputStream = new FileInputStream(cacheFile)) {
+                s3Factory.getInstance(instanceId)
+                        .putObject("/" + Constant.TRAINING + "/" + type.toLowerCase(Locale.ROOT) + "/" + cacheFile.getName(), inputStream);
+            }
+            // 上传封面到S3
+            final String s3Path;
+            try (FileInputStream inputStream = new FileInputStream(coverFile)) {
+                s3Path = s3Factory.getInstance(instanceId)
+                        .putObject("/" + Constant.TRAINING + "/" + type.toLowerCase(Locale.ROOT) + "/" + cacheFile.getName() + "#COVER.jpeg", inputStream);
+            }
+            return s3Path;
+        } finally {
+            if (coverFile.exists() && coverFile.delete()) {
+                log.info("[S3] 文件({}), 上传完成自动回收", coverFile.getAbsoluteFile());
             }
         }
     }
