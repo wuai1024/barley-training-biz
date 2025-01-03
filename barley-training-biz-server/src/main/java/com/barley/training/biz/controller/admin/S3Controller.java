@@ -79,7 +79,7 @@ public class S3Controller implements S3Facade {
             default -> Constant.S3_FILE;
         };
 
-        final String suffix = originalFilename.substring(index).toLowerCase(Locale.ROOT);
+        final String suffix = originalFilename.substring(index + 1).toLowerCase(Locale.ROOT);
         final File cacheFile = Paths.get(Constant.PUT_CACHE, UUID.randomUUID() + suffix).toFile();
         try {
             // 保存上传文件
