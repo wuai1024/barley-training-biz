@@ -21,7 +21,6 @@
     <properties>
         <java.version>21</java.version>
         <ok2curl.version>0.7.0</ok2curl.version>
-        <ffmpeg.version>7.1-1.5.11</ffmpeg.version>
     </properties>
 
     <dependencyManagement>
@@ -32,13 +31,6 @@
                 <artifactId>ok2curl</artifactId>
                 <version>${ok2curl.version}</version>
             </dependency>
-
-            <dependency>
-                <groupId>org.bytedeco</groupId>
-                <artifactId>ffmpeg</artifactId>
-                <version>${ffmpeg.version}</version>
-            </dependency>
-
         </dependencies>
     </dependencyManagement>
 
