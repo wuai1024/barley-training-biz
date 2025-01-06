@@ -32,6 +32,7 @@ script: |
       AND t1.class_id = #{params.classId}
     </if>
   </where>
+  ORDER BY t1.date DESC
 scriptCount: |
   SELECT count(*) FROM course t1
   <where>

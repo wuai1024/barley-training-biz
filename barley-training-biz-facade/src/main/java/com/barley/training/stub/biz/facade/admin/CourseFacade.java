@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 
+
 @Tag(name = "CourseFacade", description = "班级课程表")
 public interface CourseFacade {
 

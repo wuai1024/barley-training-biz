@@ -18,6 +18,7 @@
               "hideInTable": false
             },
             {
+              "link": "/admin/project-class/edit/#{id}",
               "title": "培训班名称",
               "width": "150px",
               "dataIndex": "className",
@@ -69,11 +70,6 @@
               "title": "操作",
               "dataIndex": "_panel",
               "menusItems": [
-                {
-                  "key": "edit",
-                  "text": "编辑",
-                  "eventName": "EDIT"
-                },
                 {
                   "key": "delete",
                   "text": "移除",

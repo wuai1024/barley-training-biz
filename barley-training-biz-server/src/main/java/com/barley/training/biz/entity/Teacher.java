@@ -17,6 +17,7 @@ public class Teacher extends BaseEntity implements Serializable {
     private Long id;
     private String code;
     private String name;
+    private ArrayStringExt images;
     private String inOutDept;
     private String organizationName;
     private String gender;
@@ -28,5 +29,5 @@ public class Teacher extends BaseEntity implements Serializable {
     private String education;
     private String educationalExperience;
     private String workExperience;
-    private ArrayStringExt images;
+    private ArrayStringExt files;
 }

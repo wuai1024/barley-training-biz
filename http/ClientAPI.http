@@ -1,0 +1,81 @@
+### 获取token
+POST {{baseUrl}}/client/auth/login
+Content-Type:application/json
+
+{
+    "code": "1001",
+    "phone": "18193200697"
+}
+
+
+### 教室列表
+GET {{baseUrl}}/client/classroom/list
+Content-Type:application/json
+Authorization:{{token}}
+
+{
+}
+
+### 教室明细
+GET {{baseUrl}}/client/classroom/1844631270464249858
+Content-Type:application/json
+Authorization:{{token}}
+
+{
+}
+
+### 教师列表
+GET {{baseUrl}}/client/teacher/list
+Content-Type:application/json
+Authorization:{{token}}
+
+{
+}
+
+### 教师明细
+GET {{baseUrl}}/client/teacher/1846488691923050498
+Content-Type:application/json
+Authorization:{{token}}
+
+{
+}
+
+### 班级列表
+GET {{baseUrl}}/client/project/class/list
+Content-Type:application/json
+Authorization:{{token}}
+
+{
+}
+
+### 班级明细
+GET {{baseUrl}}/client/project/class/1844647406652186625
+Content-Type:application/json
+Authorization:{{token}}
+
+{
+}
+
+### 培训计划列表
+GET {{baseUrl}}/client/course/list
+Content-Type:application/json
+Authorization:{{token}}
+
+{
+}
+
+### 培训计划明细
+GET {{baseUrl}}/client/course/1844647704112226306
+Content-Type:application/json
+Authorization:{{token}}
+
+{
+}
+
+### 课堂巡检列表
+GET {{baseUrl}}/client/inspect/list
+Content-Type:application/json
+Authorization:{{token}}
+
+{
+}

@@ -8,8 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 @Component
 @RequiredArgsConstructor
@@ -32,6 +31,6 @@ public class AuthConfig implements MyAuthSession {
 
     @Override
     public String failResponse(String message) {
-        return JsonUtils.stringify(Map.of("message", message, "code", "401"));
+        return JsonUtils.stringify(Map.of("message", Optional.ofNullable(message).orElse(""), "code", "401"));
     }
 }

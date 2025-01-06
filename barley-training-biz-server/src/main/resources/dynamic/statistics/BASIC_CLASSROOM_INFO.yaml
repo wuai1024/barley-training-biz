@@ -6,6 +6,7 @@ script: |
     code,
     capacity,
     type,
+    images,
     device,
     remarks
   FROM classroom_info
@@ -15,3 +16,4 @@ config:
   type:
     objectField:
       - device
+      - images

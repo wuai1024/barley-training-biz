@@ -3,6 +3,8 @@ package com.barley.training.stub.biz.request;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Schema(description = "项目班级")
 public class ProjectClassRequest {
@@ -15,6 +17,9 @@ public class ProjectClassRequest {
 
     @Schema(description = "班级")
     private String className;
+
+    @Schema(description = "班级图片")
+    private List<String> images;
 
     @Schema(description = "班主任")
     private String classHeader;

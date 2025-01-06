@@ -16,6 +16,9 @@ script: |
   SELECT id AS value, device_name AS label
   FROM device_info di
   WHERE di.is_delete = 0
-  AND id NOT IN  (SELECT * FROM D)
+  AND (
+    id NOT IN (SELECT value FROM D)
+    OR device_type = 'L'
+  )
 scriptCount:
 config:

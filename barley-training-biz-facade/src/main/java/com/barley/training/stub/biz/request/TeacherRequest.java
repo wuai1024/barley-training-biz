@@ -19,6 +19,9 @@ public class TeacherRequest {
     @Schema(description = "老师名称")
     private String name;
 
+    @Schema(description = "头像")
+    private List<String> images;
+
     @Schema(description = "内外部")
     private String inOutDept;
 
@@ -53,7 +56,7 @@ public class TeacherRequest {
     private String workExperience;
 
     @Schema(description = "附件")
-    private List<String> images;
+    private List<String> files;
 
     @Schema(description = "备注")
     private String remarks;

@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @Schema(description = "班级课程")
@@ -43,6 +44,9 @@ public class CourseRequest {
 
     @Schema(description = "课时")
     private Integer hours;
+
+    @Schema(description = "附件")
+    private List<String> files;
 
     @Schema(description = "备注")
     private String remarks;

@@ -1,6 +1,7 @@
 package com.barley.training.biz.entity;
 
 import com.barley.common.datasource.BaseEntity;
+import com.barley.training.biz.entity.ext.ArrayStringExt;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,5 +20,5 @@ public class TeacherCertificate extends BaseEntity implements Serializable {
     private String certificateName;
     private String issuingAuthority;
     private LocalDate acquisitionDate;
-    private String images; // JSON representation
+    private ArrayStringExt images; // JSON representation
 }

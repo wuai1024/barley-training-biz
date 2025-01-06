@@ -11,12 +11,10 @@ import com.barley.training.stub.biz.bean.client.ClientDTO;
 import com.barley.training.stub.biz.request.AuthRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.time.Period;
-import java.util.*;
+import java.util.Objects;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 import static com.barley.common.base.constants.Constants.LIMIT_1;

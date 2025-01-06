@@ -13,6 +13,7 @@ script: |
     t1.educational_experience AS educationalExperience,
     t1.work_experience AS workExperience,
     t1.title_id AS titleId,
+    t1.files,
     t1.images,
     t1.remarks
   FROM teacher t1
@@ -22,3 +23,4 @@ config:
   type:
     objectField:
       - images
+      - files

@@ -14,6 +14,9 @@ public class ClassroomInfoRequest {
     @Schema(description = "教室名称")
     private String name;
 
+    @Schema(description = "教室图片")
+    private List<String> images;
+
     @Schema(description = "教室编号")
     private String code;
 

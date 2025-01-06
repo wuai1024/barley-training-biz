@@ -9,11 +9,16 @@ script: |
     t1.training_content AS trainingContent,
     t1.training_form AS trainingForm,
     t1.supervise_phone AS supervisePhone,
-    t1.supervise
+    t1.supervise,
     t1.date,
     t1.time,
+    t1.hours,
+    t1.files,
     t1.remarks
   FROM course t1
   WHERE t1.id = #{params.id}
 scriptCount:
 config:
+  type:
+    objectField:
+      - files

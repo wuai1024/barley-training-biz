@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @Schema(description = "老师证书请求")
@@ -28,7 +29,7 @@ public class TeacherCertificateRequest {
     private LocalDate acquisitionDate;
 
     @Schema(description = "照片 JSON")
-    private String images; // JSON representation
+    private List<String> images; // JSON representation
 
     @Schema(description = "备注")
     private String remarks;

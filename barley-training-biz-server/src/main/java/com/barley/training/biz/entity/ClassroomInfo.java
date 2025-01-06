@@ -2,6 +2,7 @@ package com.barley.training.biz.entity;
 
 import com.barley.common.datasource.BaseEntity;
 import com.barley.training.biz.entity.ext.ArrayLongExt;
+import com.barley.training.biz.entity.ext.ArrayStringExt;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,6 +19,8 @@ public class ClassroomInfo extends BaseEntity implements Serializable {
     private String name;
 
     private String code;
+
+    private ArrayStringExt images;
 
     private Integer capacity;
 

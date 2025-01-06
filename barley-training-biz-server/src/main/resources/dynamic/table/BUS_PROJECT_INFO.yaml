@@ -6,7 +6,6 @@ script: |
     project_name AS projectName,
     start_date AS startDate,
     end_date AS endDate,
-    hours,
     project_description AS projectDescription,
     is_display AS isDisplay,
     CASE is_display WHEN '1' THEN '是' WHEN '0' THEN '否' ELSE '' END AS displayName

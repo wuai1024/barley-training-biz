@@ -7,6 +7,8 @@ script: |
     t1.class_name AS className,
     t1.class_leader AS classLeader,
     t1.class_leader_phone AS classLeaderPhone,
+    t1.class_header AS classHeader,
+    t1.class_header_phone AS classHeaderPhone,
     t1.study_committee AS studyCommittee,
     t1.study_committee_phone AS studyCommitteePhone,
     t1.publicity_committee AS publicityCommittee,
@@ -17,9 +19,13 @@ script: |
     t1.life_committee_phone AS lifeCommitteePhone,
     t1.temporary_secretary AS temporarySecretary,
     t1.temporary_secretary_phone AS temporarySecretaryPhone,
+    t1.images,
     t1.remarks
   FROM project_class t1
   LEFT JOIN project t2 ON t1.project_id = t2.id
   WHERE t1.id = #{params.id}
 scriptCount:
 config:
+  type:
+    objectField:
+      - images

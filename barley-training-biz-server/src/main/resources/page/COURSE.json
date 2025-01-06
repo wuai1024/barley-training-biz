@@ -12,6 +12,25 @@
               "hideInTable": true
             },
             {
+              "link": "/admin/course/edit/#{id}",
+              "title": "日期",
+              "width": "125px",
+              "dataIndex": "date",
+              "hideInTable": false
+            },
+            {
+              "title": "时间",
+              "width": "125px",
+              "dataIndex": "time",
+              "hideInTable": false
+            },
+            {
+              "title": "课时",
+              "width": "100px",
+              "dataIndex": "hours",
+              "hideInTable": false
+            },
+            {
               "title": "培训项目",
               "width": "120px",
               "dataIndex": "projectName",
@@ -60,32 +79,9 @@
               "hideInTable": false
             },
             {
-              "title": "日期",
-              "width": "125px",
-              "dataIndex": "date",
-              "hideInTable": false
-            },
-            {
-              "title": "时间",
-              "width": "125px",
-              "dataIndex": "time",
-              "hideInTable": false
-            },
-            {
-              "title": "课时",
-              "width": "125px",
-              "dataIndex": "hours",
-              "hideInTable": false
-            },
-            {
               "title": "操作",
               "dataIndex": "_panel",
               "menusItems": [
-                {
-                  "key": "edit",
-                  "text": "编辑",
-                  "eventName": "EDIT"
-                },
                 {
                   "key": "delete",
                   "text": "移除",
