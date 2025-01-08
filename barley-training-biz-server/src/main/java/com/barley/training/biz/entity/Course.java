@@ -24,6 +24,10 @@ public class Course extends BaseEntity implements Serializable {
 
     private Long classroomId;  // Classroom ID
 
+    private String courseName;
+
+    private Integer liveId;
+
     private String supervise;
 
     private String supervisePhone;

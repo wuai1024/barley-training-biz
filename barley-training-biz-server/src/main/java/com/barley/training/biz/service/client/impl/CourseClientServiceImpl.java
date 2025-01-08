@@ -2,6 +2,10 @@ package com.barley.training.biz.service.client.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.barley.training.biz.channel.ItcApis;
+import com.barley.training.biz.channel.request.LiveListRequest;
+import com.barley.training.biz.channel.request.VideoListRequest;
+import com.barley.training.biz.channel.response.LiveListResponse;
+import com.barley.training.biz.channel.response.VideoListResponse;
 import com.barley.training.biz.entity.*;
 import com.barley.training.biz.mapper.CourseMapper;
 import com.barley.training.biz.service.admin.ProjectService;
@@ -10,6 +14,7 @@ import com.barley.training.biz.service.convert.CourseConvertMapper;
 import com.barley.training.stub.biz.bean.client.CourseDTO;
 import com.barley.training.stub.biz.bean.client.CourseViewDTO;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 
@@ -61,13 +66,53 @@ public class CourseClientServiceImpl extends ServiceImpl<CourseMapper, Course> i
         return CourseConvertMapper.INSTANCE.toDTO(this.getById(id));
     }
 
+    @SneakyThrows
     @Override
     public List<CourseViewDTO> getViewBy(long id) {
-        return null;
+        Course course = this.lambdaQuery().eq(Course::getId, id).one();
+        VideoListRequest request = new VideoListRequest();
+        request.setLive_id(course.getLiveId());
+        request.setPage_index(1);
+        request.setPage_size(10);
+        VideoListResponse res = itcApis.videoList(request);
+        return Optional.ofNullable(res.getData())
+                .map(data -> Optional.ofNullable(data.getData())
+                        .map(data2 -> Optional.ofNullable(data2.getData())
+                                .map(data3 -> data3.stream()
+                                        .map(video -> {
+                                            CourseViewDTO courseViewDTO = new CourseViewDTO();
+                                            courseViewDTO.setId((long) video.getId());
+                                            courseViewDTO.setVideoName(video.getVideoName());
+                                            courseViewDTO.setVideoUrl(video.getPlayUrl());
+                                            return courseViewDTO;
+                                        })
+                                        .toList())
+                                .orElse(Collections.emptyList()))
+                        .orElse(Collections.emptyList()))
+                .orElse(Collections.emptyList());
     }
 
+    @SneakyThrows
     @Override
     public CourseViewDTO getLive() {
-        return null;
+        LiveListRequest request = new LiveListRequest();
+        request.setLive_type(1);
+        request.setOrder(1);
+        request.setPage_index(1);
+        request.setPage_size(100);
+        LiveListResponse res = itcApis.liveList(request);
+
+        Optional<LiveListResponse.LiveInfo> liveInfo = Optional.ofNullable(res.getData())
+                .flatMap(data -> Optional.ofNullable(data.getData()))
+                .flatMap(dataData -> Optional.ofNullable(dataData.getData()))
+                .flatMap(dataDataData -> Optional.ofNullable(dataDataData.getFirst()));
+
+        CourseViewDTO courseViewDTO = new CourseViewDTO();
+        liveInfo.ifPresent(info -> {
+            courseViewDTO.setId((long) info.getId());
+            courseViewDTO.setVideoName(info.getName());
+            courseViewDTO.setVideoUrl(info.getPlayUrl());
+        });
+        return courseViewDTO;
     }
 }

@@ -21,5 +21,7 @@ public class ClassroomInfoDTO {
 
     private String type;
 
+    private List<String> images;
+
     private List<DeviceInfoDTO> deviceInfoDTOS;
 }

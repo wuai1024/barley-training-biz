@@ -87,75 +87,75 @@ public class ApisHttpOkImpl implements ApisHttp {
 
         @Override
         public Response get() throws IOException {
-            final okhttp3.Request.Builder builder = this._create();
+            final okhttp3.Request.Builder builder = this.create();
             final okhttp3.Request request = builder.get().build();
             return new MyResponse(newCall(request));
         }
 
         @Override
         public Response getJson(String json) throws IOException {
-            final okhttp3.Request.Builder builder = this._create();
+            final okhttp3.Request.Builder builder = this.create();
             final okhttp3.Request request = builder.method("get", RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json)).build();
             return new MyResponse(newCall(request));
         }
 
         @Override
         public Response postForm() throws IOException {
-            final okhttp3.Request.Builder builder = this._create();
+            final okhttp3.Request.Builder builder = this.create();
             final okhttp3.Request request = builder.post(formBodyBuilder.build()).build();
             return new MyResponse(newCall(request));
         }
 
         @Override
         public Response post(String body) throws IOException {
-            final okhttp3.Request.Builder builder = this._create();
+            final okhttp3.Request.Builder builder = this.create();
             final okhttp3.Request request = builder.post(RequestBody.create(MediaType.parse(headerMap.get("Content-Type")), body)).build();
             return new MyResponse(newCall(request));
         }
 
         @Override
         public Response postJson(String json) throws IOException {
-            final okhttp3.Request.Builder builder = this._create();
+            final okhttp3.Request.Builder builder = this.create();
             final okhttp3.Request request = builder.post(RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json)).build();
             return new MyResponse(newCall(request));
         }
 
         @Override
         public Response postXml(String xml) throws IOException {
-            final okhttp3.Request.Builder builder = this._create();
+            final okhttp3.Request.Builder builder = this.create();
             final okhttp3.Request request = builder.post(RequestBody.create(MediaType.parse("application/xml charset=utf-8"), xml)).build();
             return new MyResponse(newCall(request));
         }
 
         @Override
         public Response putForm() throws IOException {
-            final okhttp3.Request.Builder builder = this._create();
+            final okhttp3.Request.Builder builder = this.create();
             final okhttp3.Request request = builder.put(formBodyBuilder.build()).build();
             return new MyResponse(newCall(request));
         }
 
         @Override
         public Response putJson(String json) throws IOException {
-            final okhttp3.Request.Builder builder = this._create();
+            final okhttp3.Request.Builder builder = this.create();
             final okhttp3.Request request = builder.put(RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json)).build();
             return new MyResponse(newCall(request));
         }
 
         @Override
         public Response delete() throws IOException {
-            final okhttp3.Request.Builder builder = this._create();
+            final okhttp3.Request.Builder builder = this.create();
             final okhttp3.Request request = builder.delete().build();
             return new MyResponse(newCall(request));
         }
 
         @Override
         public Response deleteJson(String json) throws IOException {
-            final okhttp3.Request.Builder builder = this._create();
+            final okhttp3.Request.Builder builder = this.create();
             final okhttp3.Request request = builder.method("DELETE", RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json)).build();
             return new MyResponse(newCall(request));
         }
 
-        private okhttp3.Request.Builder _create() {
+        private okhttp3.Request.Builder create() {
             okhttp3.Request.Builder requestBuilder = new okhttp3.Request.Builder();
             headerMap.forEach(requestBuilder::header);
             requestBuilder.url(httpUrlBuilder.build());

@@ -13,9 +13,18 @@ ALTER TABLE barley_training.teacher CHANGE images images varchar(100) NULL COMME
 ALTER TABLE barley_training.project_class ADD images varchar(100) NULL COMMENT '培训班 图片';
 ALTER TABLE barley_training.project_class CHANGE images images varchar(100) NULL COMMENT '培训班 图片' AFTER class_name;
 
--- 课程增加课件
+-- 课程增加课件、名称、视频ID
 ALTER TABLE barley_training.course ADD files varchar(100) NULL COMMENT '课件';
 ALTER TABLE barley_training.course CHANGE files files varchar(100) NULL COMMENT '课件' AFTER hours;
+ALTER TABLE barley_training.course ADD course_name varchar(100) NULL COMMENT '课程名称';
+ALTER TABLE barley_training.course CHANGE course_name course_name varchar(100) NULL COMMENT '课程名称' AFTER classroom_id;
+ALTER TABLE barley_training.course ADD live_id INT NULL COMMENT '视频ID';
+ALTER TABLE barley_training.course CHANGE live_id live_id INT NULL COMMENT '视频ID' AFTER course_name;
+
 
 -- 删除hours字段
 ALTER TABLE barley_training.project DROP COLUMN hours;
+
+-- 设备增加第三方ID
+ALTER TABLE barley_training.course ADD third_id INT NULL COMMENT '第三方ID';
+ALTER TABLE barley_training.course CHANGE third_id third_id INT NULL COMMENT '第三方ID' AFTER classroom_id;

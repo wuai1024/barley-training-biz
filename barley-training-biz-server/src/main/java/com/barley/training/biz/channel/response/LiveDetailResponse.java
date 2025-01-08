@@ -175,7 +175,8 @@ public class LiveDetailResponse extends ItcBaseResponse {
         @JsonProperty("app_picture")
         private String appPicture;
 
-        private String streamname;
+        @JsonProperty("streamname")
+        private String streamName;
 
         @JsonProperty("status_stream_audio")
         private String statusStreamAudio;

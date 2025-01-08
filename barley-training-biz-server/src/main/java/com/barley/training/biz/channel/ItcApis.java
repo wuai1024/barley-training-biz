@@ -2,7 +2,6 @@ package com.barley.training.biz.channel;
 
 
 import com.barley.common.base.JsonUtils;
-import com.barley.common.redis.key.ICacheKey;
 import com.barley.training.biz.channel.config.ItcConfig;
 import com.barley.training.biz.channel.request.*;
 import com.barley.training.biz.channel.response.*;
@@ -23,18 +22,10 @@ public class ItcApis {
         this.apisHttp = ApisHttp.Builder.build();
     }
 
-
-    private enum ItcCacheEnum implements ICacheKey<ItcCacheEnum> {
-
-        ITC_TOKEN {
-            @Override
-            public String getCacheKey(String... customerKey) {
-                return super.getCacheKey(this, customerKey);
-            }
-        },
-
-    }
-
+    /**
+     * @return
+     * @throws IOException
+     */
     public AccessTokenResponse accessToken() throws IOException {
         ItcRequest<Map<String, String>> accessTokenRequest = new ItcRequest<>();
         accessTokenRequest.setCompany(config.getCompany());
@@ -53,6 +44,10 @@ public class ItcApis {
         return accessTokenResponse;
     }
 
+    /**
+     * @return
+     * @throws IOException
+     */
     private String getAccessToken() throws IOException {
         return "mfRSpHMnM37N17e617FZRblQeaBdbEjM";
 
@@ -61,7 +56,10 @@ public class ItcApis {
 //        return accessTokenResponse.getAccessToken();
     }
 
-    // 设备列表
+    /**
+     * @return
+     * @throws IOException
+     */
     public DeviceListResponse deviceList() throws IOException {
         ItcRequest<Map<String, String>> liveRequest = new ItcRequest<>();
         liveRequest.setCompany(config.getCompany());
@@ -81,7 +79,11 @@ public class ItcApis {
         return deviceListResponse;
     }
 
-    // 直播预约
+    /**
+     * @param liveRequest
+     * @return
+     * @throws IOException
+     */
     public LiveResponse live(LiveRequest liveRequest) throws IOException {
         String path = "/appapi/live/live";
         Response response = apisHttp
@@ -96,7 +98,11 @@ public class ItcApis {
         return liveResponse;
     }
 
-    // 直播详情
+    /**
+     * @param liveId
+     * @return
+     * @throws IOException
+     */
     public LiveDetailResponse liveDetail(String liveId) throws IOException {
         String path = "/appapi/live/live";
         ItcRequest<Map<String, String>> liveDetailRequest = new ItcRequest<>();
@@ -115,10 +121,14 @@ public class ItcApis {
         return liveDetailResponse;
     }
 
-    // 直播详情
-    public Boolean liveDelete(String liveId) throws IOException {
+    /**
+     * @param liveId
+     * @return
+     * @throws IOException
+     */
+    public Boolean liveDelete(Integer liveId) throws IOException {
         String path = "/appapi/live/live";
-        ItcRequest<Map<String, String>> liveDetailRequest = new ItcRequest<>();
+        ItcRequest<Map<String, Object>> liveDetailRequest = new ItcRequest<>();
         liveDetailRequest.setCompany(config.getCompany());
         liveDetailRequest.setDevice_name(config.getDevice_name());
         liveDetailRequest.setData(Map.of("liveid", liveId, "type", "2"));
@@ -137,9 +147,15 @@ public class ItcApis {
         return false;
     }
 
-    // 直播列表
+    /**
+     * 直播列表
+     *
+     * @param liveListRequest
+     * @return
+     * @throws IOException
+     */
     public LiveListResponse liveList(LiveListRequest liveListRequest) throws IOException {
-        String path = "/appapi/live/live";
+        String path = "/appapi/live/live_list";
         ItcRequest<LiveListRequest> liveDetailRequest = new ItcRequest<>();
         liveDetailRequest.setCompany(config.getCompany());
         liveDetailRequest.setDevice_name(config.getDevice_name());
@@ -147,7 +163,7 @@ public class ItcApis {
 
         Response response = apisHttp.request(config.getBaseUrl(), path)
                 .header("Authorization", "Bearer " + this.getAccessToken())
-                .deleteJson(JsonUtils.stringify(liveDetailRequest));
+                .getJson(JsonUtils.stringify(liveDetailRequest));
         int httpStatusCode = response.statusCode();
         String responseStr = response.bodyString();
         LiveListResponse liveListResponse = JsonUtils.parse(responseStr, LiveListResponse.class);
@@ -156,7 +172,13 @@ public class ItcApis {
         return liveListResponse;
     }
 
-    // 视频列表
+    /**
+     * 视频列表
+     *
+     * @param videoListRequest
+     * @return
+     * @throws IOException
+     */
     public VideoListResponse videoList(VideoListRequest videoListRequest) throws IOException {
         String path = "/appapi/video/video_list";
         ItcRequest<VideoListRequest> liveDetailRequest = new ItcRequest<>();

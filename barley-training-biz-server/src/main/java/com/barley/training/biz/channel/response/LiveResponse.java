@@ -19,7 +19,7 @@ public class LiveResponse extends ItcBaseResponse {
     @Getter
     @Setter
     public static class DeviceData {
-        private String id;
+        private Integer id;
     }
 
 }

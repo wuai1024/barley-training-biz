@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 @Getter
 public class DeviceInfo extends BaseEntity implements Serializable {
     private Long id;
+    private Integer thirdId;
     private String deviceName;
     private String deviceCode;
     private String deviceIp;

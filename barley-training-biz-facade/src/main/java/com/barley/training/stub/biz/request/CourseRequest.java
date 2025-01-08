@@ -24,6 +24,9 @@ public class CourseRequest {
     @Schema(description = "教室ID")
     private Long classroomId;
 
+    @Schema(description = "课程名称")
+    private String courseName;
+
     @Schema(description = "督导员")
     private String supervise;
 
