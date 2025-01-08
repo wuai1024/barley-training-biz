@@ -77,13 +77,6 @@ public interface Request {
      *
      * @return 响应实体.
      */
-    Response getJson(String json) throws IOException;
-
-    /**
-     * 发送请求.
-     *
-     * @return 响应实体.
-     */
     Response postForm() throws IOException;
 
     /**

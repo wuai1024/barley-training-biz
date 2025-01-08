@@ -15,12 +15,12 @@ public class LiveListResponse extends ItcBaseResponse {
     @Setter
     public static class DataWrapper {
         private String status;
-        private LiveData data;
+        private InnerData data;
     }
 
     @Getter
     @Setter
-    public static class LiveData {
+    public static class InnerData {
         private int pageIndex;
         private int pageMax;
         private int dataSum;
@@ -58,33 +58,35 @@ public class LiveListResponse extends ItcBaseResponse {
         private String password;
         private int limitType;
         private String limitId;
-        private String passwordClassId;
+        private String passwordClassid;
         private String teacherName;
         private int isTv713a;
         private int isPush;
         private int levelSourceId;
         private int standardId;
-        private String attendClassId;
+        private Object attendClassId; // 使用Object，因为JSON中为null
         private int isNeedLogin;
         private String deviceCode;
+        private int syllabusId;
         private String recorderName;
         private String ip;
         private String signCode;
         private String teachername;
         private String avatarPath;
         private String clName;
-        private Integer type;
+        private int type;
         private String streamAddr;
-        private String subjectname;
-        private String studyname;
-        private String gradename;
+        private Object subjectname; // 使用Object，因为JSON中为null
+        private Object studyname; // 使用Object，因为JSON中为null
+        private Object gradename; // 使用Object，因为JSON中为null
         private String sourceUrl;
         private String rtmp;
         private String playUrl;
         private String webrtcUrl;
-        private int streamname;
-        private boolean statusStreamAudio;
-        private boolean statusStream;
+        private String m3u8Url;
+        private String streamname;
+        private String statusStreamAudio;
+        private String statusStream;
         private int _status;
         private String _statusText;
         private String examineStatusText;

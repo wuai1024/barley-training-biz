@@ -70,6 +70,9 @@ public class CourseClientServiceImpl extends ServiceImpl<CourseMapper, Course> i
     @Override
     public List<CourseViewDTO> getViewBy(long id) {
         Course course = this.lambdaQuery().eq(Course::getId, id).one();
+        if (Objects.isNull(course.getLiveId())) {
+            return List.of();
+        }
         VideoListRequest request = new VideoListRequest();
         request.setLive_id(course.getLiveId());
         request.setPage_index(1);

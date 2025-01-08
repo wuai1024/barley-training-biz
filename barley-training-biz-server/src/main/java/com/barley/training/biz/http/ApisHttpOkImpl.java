@@ -93,13 +93,6 @@ public class ApisHttpOkImpl implements ApisHttp {
         }
 
         @Override
-        public Response getJson(String json) throws IOException {
-            final okhttp3.Request.Builder builder = this.create();
-            final okhttp3.Request request = builder.method("get", RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json)).build();
-            return new MyResponse(newCall(request));
-        }
-
-        @Override
         public Response postForm() throws IOException {
             final okhttp3.Request.Builder builder = this.create();
             final okhttp3.Request request = builder.post(formBodyBuilder.build()).build();

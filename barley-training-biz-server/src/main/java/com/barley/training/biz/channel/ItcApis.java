@@ -7,12 +7,18 @@ import com.barley.training.biz.channel.request.*;
 import com.barley.training.biz.channel.response.*;
 import com.barley.training.biz.http.ApisHttp;
 import com.barley.training.biz.http.Response;
+import com.github.benmanes.caffeine.cache.Cache;
+import com.github.benmanes.caffeine.cache.Caffeine;
 
 import java.io.IOException;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 public class ItcApis {
+
+    public static final Cache<String, String> TOKEN_ACCESS = Caffeine.newBuilder()
+            .expireAfterWrite(7000, TimeUnit.SECONDS) // Set expiration time
+            .build();
 
     private final ItcConfig config;
     private final ApisHttp apisHttp;
@@ -35,7 +41,7 @@ public class ItcApis {
         String path = "/accessToken";
         Response response = apisHttp
                 .request(config.getBaseUrl(), path)
-                .getJson(JsonUtils.stringify(accessTokenRequest));
+                .postJson(JsonUtils.stringify(accessTokenRequest));
         int httpStatusCode = response.statusCode();
         String responseStr = response.bodyString();
         AccessTokenResponse accessTokenResponse = JsonUtils.parse(responseStr, AccessTokenResponse.class);
@@ -49,27 +55,34 @@ public class ItcApis {
      * @throws IOException
      */
     private String getAccessToken() throws IOException {
-        return "mfRSpHMnM37N17e617FZRblQeaBdbEjM";
+        String cacheKey = "itc.accessToken";
+        String cachedToken = TOKEN_ACCESS.getIfPresent(cacheKey);
+        if (cachedToken != null) {
+            return cachedToken;
+        }
 
-//        AccessTokenResponse accessTokenResponse = accessToken();
-//        Optional.ofNullable(accessTokenResponse).orElseThrow(() -> new RuntimeException("获取accessToken失败"));
-//        return accessTokenResponse.getAccessToken();
+        AccessTokenResponse accessTokenResponse = accessToken();
+        Optional.ofNullable(accessTokenResponse).orElseThrow(() -> new RuntimeException("获取accessToken失败"));
+        TOKEN_ACCESS.put(cacheKey, accessTokenResponse.getAccessToken());
+        return accessTokenResponse.getAccessToken();
     }
 
     /**
+     * 设备列表
+     *
      * @return
      * @throws IOException
      */
     public DeviceListResponse deviceList() throws IOException {
-        ItcRequest<Map<String, String>> liveRequest = new ItcRequest<>();
-        liveRequest.setCompany(config.getCompany());
-        liveRequest.setDevice_name(config.getDevice_name());
-        liveRequest.setData(Map.of());
-        String path = "/appapi/recorder/recorder_list";
+        ItcRequest<Map<String, String>> deviceRequest = new ItcRequest<>();
+        deviceRequest.setCompany(config.getCompany());
+        deviceRequest.setDevice_name(config.getDevice_name());
+        deviceRequest.setData(Map.of());
+        String path = "/appapi/recorder/recorder_list_post";
         Response response = apisHttp
                 .request(config.getBaseUrl(), path)
                 .header("Authorization", "Bearer " + this.getAccessToken())
-                .getJson(JsonUtils.stringify(liveRequest));
+                .postJson(JsonUtils.stringify(deviceRequest));
 
         int httpStatusCode = response.statusCode();
         String responseStr = response.bodyString();
@@ -80,11 +93,18 @@ public class ItcApis {
     }
 
     /**
+     * 直播预约
+     *
      * @param liveRequest
      * @return
      * @throws IOException
      */
     public LiveResponse live(LiveRequest liveRequest) throws IOException {
+        ItcRequest<LiveRequest> liveReq = new ItcRequest<>();
+        liveReq.setCompany(config.getCompany());
+        liveReq.setDevice_name(config.getDevice_name());
+        liveReq.setMethod("add");
+        liveReq.setData(liveRequest);
         String path = "/appapi/live/live";
         Response response = apisHttp
                 .request(config.getBaseUrl(), path)
@@ -102,17 +122,19 @@ public class ItcApis {
      * @param liveId
      * @return
      * @throws IOException
+     * @
      */
     public LiveDetailResponse liveDetail(String liveId) throws IOException {
-        String path = "/appapi/live/live";
+        String path = "/appapi/live/live_post";
         ItcRequest<Map<String, String>> liveDetailRequest = new ItcRequest<>();
         liveDetailRequest.setCompany(config.getCompany());
         liveDetailRequest.setDevice_name(config.getDevice_name());
+        liveDetailRequest.setMethod("detail");
         liveDetailRequest.setData(Map.of("liveid", liveId));
 
         Response response = apisHttp.request(config.getBaseUrl(), path)
                 .header("Authorization", "Bearer " + this.getAccessToken())
-                .getJson(JsonUtils.stringify(liveDetailRequest));
+                .postJson(JsonUtils.stringify(liveDetailRequest));
         int httpStatusCode = response.statusCode();
         String responseStr = response.bodyString();
         LiveDetailResponse liveDetailResponse = JsonUtils.parse(responseStr, LiveDetailResponse.class);
@@ -155,7 +177,7 @@ public class ItcApis {
      * @throws IOException
      */
     public LiveListResponse liveList(LiveListRequest liveListRequest) throws IOException {
-        String path = "/appapi/live/live_list";
+        String path = "/appapi/live/live_list_post";
         ItcRequest<LiveListRequest> liveDetailRequest = new ItcRequest<>();
         liveDetailRequest.setCompany(config.getCompany());
         liveDetailRequest.setDevice_name(config.getDevice_name());
@@ -163,7 +185,7 @@ public class ItcApis {
 
         Response response = apisHttp.request(config.getBaseUrl(), path)
                 .header("Authorization", "Bearer " + this.getAccessToken())
-                .getJson(JsonUtils.stringify(liveDetailRequest));
+                .postJson(JsonUtils.stringify(liveDetailRequest));
         int httpStatusCode = response.statusCode();
         String responseStr = response.bodyString();
         LiveListResponse liveListResponse = JsonUtils.parse(responseStr, LiveListResponse.class);
@@ -180,7 +202,7 @@ public class ItcApis {
      * @throws IOException
      */
     public VideoListResponse videoList(VideoListRequest videoListRequest) throws IOException {
-        String path = "/appapi/video/video_list";
+        String path = "/appapi/video/video_list_post";
         ItcRequest<VideoListRequest> liveDetailRequest = new ItcRequest<>();
         liveDetailRequest.setCompany(config.getCompany());
         liveDetailRequest.setDevice_name(config.getDevice_name());
@@ -188,13 +210,33 @@ public class ItcApis {
 
         Response response = apisHttp.request(config.getBaseUrl(), path)
                 .header("Authorization", "Bearer " + this.getAccessToken())
-                .getJson(JsonUtils.stringify(liveDetailRequest));
+                .postJson(JsonUtils.stringify(liveDetailRequest));
         int httpStatusCode = response.statusCode();
         String responseStr = response.bodyString();
         VideoListResponse videoListResponse = JsonUtils.parse(responseStr, VideoListResponse.class);
         videoListResponse.setResponseStr(responseStr);
         videoListResponse.setHttpStatusCode(httpStatusCode);
         return videoListResponse;
+    }
+
+    /**
+     * 巡检
+     *
+     * @return
+     * @throws IOException
+     */
+    public InspectResponse inspect() throws IOException {
+        String path = "/appapi/recorder/recorder_list_post";
+        InspectRequest inspectRequest = new InspectRequest();
+        Response response = apisHttp.request(config.getBaseUrl(), path)
+                .header("Authorization", "Bearer " + this.getAccessToken())
+                .postJson(JsonUtils.stringify(inspectRequest));
+        int httpStatusCode = response.statusCode();
+        String responseStr = response.bodyString();
+        InspectResponse inspectResponse = JsonUtils.parse(responseStr, InspectResponse.class);
+        inspectResponse.setResponseStr(responseStr);
+        inspectResponse.setHttpStatusCode(httpStatusCode);
+        return inspectResponse;
     }
 
 }

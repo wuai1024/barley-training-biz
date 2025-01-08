@@ -1,5 +1,6 @@
 package com.barley.training.stub.biz.facade.admin;
 
+import com.barley.training.stub.biz.bean.admin.LiveDetailDTO;
 import com.barley.training.stub.biz.request.CourseRequest;
 import com.barley.common.base.response.ResponseData;
 import io.swagger.v3.oas.annotations.Operation;
@@ -19,4 +20,18 @@ public interface CourseFacade {
     @DeleteMapping("/{id}")
     @Operation(summary = "删除")
     ResponseData<Boolean> deleteById(@PathVariable("id") long id);
+
+    @GetMapping ("/live/{id}")
+    @Operation(summary = "预约录播")
+    ResponseData<Boolean> liveById(@PathVariable("id") long id);
+
+    @DeleteMapping ("/live/{id}")
+    @Operation(summary = "取消预约录播")
+    ResponseData<Boolean> deleteLiveById(@PathVariable("id") long id);
+
+    @GetMapping ("/live/detail/{id}")
+    @Operation(summary = "预约录播详情")
+    ResponseData<LiveDetailDTO> liveDetailById(@PathVariable("id") long id);
+
+
 }

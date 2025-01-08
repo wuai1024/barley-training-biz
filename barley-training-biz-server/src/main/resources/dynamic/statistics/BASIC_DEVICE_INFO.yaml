@@ -2,6 +2,7 @@ sourceType: DEFAULT
 script: |
   SELECT
     id AS id,
+    third_id AS thirdId,
     device_name AS deviceName,
     device_code AS deviceCode,
     device_ip AS deviceIp,

@@ -2,6 +2,8 @@ sourceType: DEFAULT
 script: |
   SELECT
     t1.id,
+    t1.live_id AS liveId,
+    t1.course_name AS courseName,
     t1.project_id AS projectId,
     t2.project_name AS projectName,
     t1.class_id AS classId,

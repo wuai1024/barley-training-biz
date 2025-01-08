@@ -13,6 +13,12 @@
             },
             {
               "link": "/admin/course/edit/#{id}",
+              "title": "培训主题",
+              "width": "125px",
+              "dataIndex": "courseName",
+              "hideInTable": false
+            },
+            {
               "title": "日期",
               "width": "125px",
               "dataIndex": "date",
@@ -67,15 +73,15 @@
               "hideInTable": false
             },
             {
-              "title": "培训内容",
-              "width": "160px",
-              "dataIndex": "trainingContent",
-              "hideInTable": false
-            },
-            {
               "title": "培训形式",
               "width": "125px",
               "dataIndex": "trainingFormName",
+              "hideInTable": false
+            },
+            {
+              "title": "录播预约ID",
+              "width": "125px",
+              "dataIndex": "liveId",
               "hideInTable": false
             },
             {
@@ -92,6 +98,18 @@
                     "okText": "是",
                     "cancelText": "否"
                   }
+                },
+                {
+                  "key": "live",
+                  "text": "预约录播",
+                  "color": "#cf1322",
+                  "eventName": "LIVE"
+                },
+                {
+                  "key": "deleteLive",
+                  "text": "取消预约",
+                  "color": "#cf1322",
+                  "eventName": "DELETE_LIVE"
                 }
               ],
               "hideInTable": false

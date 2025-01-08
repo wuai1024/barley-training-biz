@@ -8,6 +8,8 @@ import lombok.Setter;
 @Setter
 public class LiveDetailResponse extends ItcBaseResponse {
 
+    private DataContainer data;
+
     @Getter
     @Setter
     public static class DataContainer {
@@ -168,6 +170,9 @@ public class LiveDetailResponse extends ItcBaseResponse {
 
         @JsonProperty("play_url")
         private String playUrl;
+
+        @JsonProperty("m3u8_url")
+        private String m3u8Url;
 
         @JsonProperty("end_time_secon")
         private int endTimeSecond;

@@ -8,5 +8,6 @@ import lombok.Setter;
 public class ItcRequest<T> {
     private String company;
     private String device_name;
+    private String method;
     private T data;
 }

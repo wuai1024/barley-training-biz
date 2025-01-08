@@ -55,6 +55,12 @@
               "hideInTable": false
             },
             {
+              "title": "第三方ID",
+              "width": "145px",
+              "dataIndex": "thirdId",
+              "hideInTable": false
+            },
+            {
               "title": "操作",
               "dataIndex": "_panel",
               "menusItems": [

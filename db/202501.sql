@@ -26,5 +26,5 @@ ALTER TABLE barley_training.course CHANGE live_id live_id INT NULL COMMENT '视�
 ALTER TABLE barley_training.project DROP COLUMN hours;
 
 -- 设备增加第三方ID
-ALTER TABLE barley_training.course ADD third_id INT NULL COMMENT '第三方ID';
-ALTER TABLE barley_training.course CHANGE third_id third_id INT NULL COMMENT '第三方ID' AFTER classroom_id;
+ALTER TABLE barley_training.device_info ADD third_id INT NULL COMMENT '第三方ID';
+ALTER TABLE barley_training.device_info CHANGE third_id third_id INT NULL COMMENT '第三方ID' AFTER device_name;

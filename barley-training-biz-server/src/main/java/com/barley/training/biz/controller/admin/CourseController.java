@@ -2,6 +2,7 @@ package com.barley.training.biz.controller.admin;
 
 import com.barley.common.base.response.ResponseData;
 import com.barley.training.biz.service.admin.CourseService;
+import com.barley.training.stub.biz.bean.admin.LiveDetailDTO;
 import com.barley.training.stub.biz.facade.admin.CourseFacade;
 import com.barley.training.stub.biz.request.CourseRequest;
 import lombok.RequiredArgsConstructor;
@@ -24,5 +25,20 @@ public class CourseController implements CourseFacade {
     @Override
     public ResponseData<Boolean> deleteById(long id) {
         return ResponseData.SUCCESS(courseService.removeBy(id));
+    }
+
+    @Override
+    public ResponseData<Boolean> liveById(long id) {
+        return ResponseData.SUCCESS(courseService.liveById(id));
+    }
+
+    @Override
+    public ResponseData<LiveDetailDTO> liveDetailById(long id) {
+        return ResponseData.SUCCESS(courseService.liveDetailById(id));
+    }
+
+    @Override
+    public ResponseData<Boolean> deleteLiveById(long id) {
+        return ResponseData.SUCCESS(courseService.deleteLiveById(id));
     }
 }

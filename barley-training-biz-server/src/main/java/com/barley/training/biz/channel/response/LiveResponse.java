@@ -7,18 +7,14 @@ import lombok.Setter;
 @Setter
 public class LiveResponse extends ItcBaseResponse {
 
-    private DataContainer data;
+    private String status;
+    private int code;
+    private String msg;
+    private Data data;
 
     @Getter
     @Setter
-    public static class DataContainer {
-        private String status;
-        private DeviceData data;
-    }
-
-    @Getter
-    @Setter
-    public static class DeviceData {
+    public static class Data {
         private Integer id;
     }
 
