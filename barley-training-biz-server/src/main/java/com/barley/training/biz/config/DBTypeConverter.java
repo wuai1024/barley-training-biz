@@ -1,10 +1,7 @@
 package com.barley.training.biz.config;
 
 import com.barley.common.datasource.TypeConverter;
-import com.barley.training.biz.entity.convert.ArrayLongConvert;
-import com.barley.training.biz.entity.convert.ArrayStringConvert;
-import com.barley.training.biz.entity.convert.MapConvert;
-import com.barley.training.biz.entity.convert.MapsConvert;
+import com.barley.training.biz.entity.convert.*;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 

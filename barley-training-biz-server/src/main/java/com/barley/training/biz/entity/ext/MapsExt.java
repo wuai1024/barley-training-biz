@@ -3,10 +3,7 @@ package com.barley.training.biz.entity.ext;
 import jakarta.validation.constraints.NotNull;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @NoArgsConstructor
 public class MapsExt extends ArrayList<MapExt> {

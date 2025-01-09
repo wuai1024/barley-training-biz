@@ -1,4 +1,4 @@
-package com.barley.training.stub.biz.bean.client;
+package com.barley.training.stub.biz.bean.admin;
 
 import lombok.Getter;
 import lombok.Setter;

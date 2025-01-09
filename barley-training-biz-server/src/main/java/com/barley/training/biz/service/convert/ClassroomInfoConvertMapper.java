@@ -16,5 +16,6 @@ public interface ClassroomInfoConvertMapper {
     ClassroomInfo toEntity(ClassroomInfoRequest request);
 
     ClassroomInfoDTO toDTO(ClassroomInfo entity);
+
     List<ClassroomInfoDTO> toDTOList(List<ClassroomInfo> entity);
 }

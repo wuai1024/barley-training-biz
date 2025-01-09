@@ -19,6 +19,18 @@
               "hideInTable": false
             },
             {
+              "title": "开始日期",
+              "width": "125px",
+              "dataIndex": "startDate",
+              "hideInTable": false
+            },
+            {
+              "title": "结束日期",
+              "width": "125px",
+              "dataIndex": "endDate",
+              "hideInTable": false
+            },
+            {
               "title": "周期",
               "width": "100px",
               "dataIndex": "cycleName",
@@ -37,18 +49,6 @@
               "hideInTable": false
             },
             {
-              "title": "开始日期",
-              "width": "125px",
-              "dataIndex": "startDate",
-              "hideInTable": false
-            },
-            {
-              "title": "结束日期",
-              "width": "125px",
-              "dataIndex": "endDate",
-              "hideInTable": false
-            },
-            {
               "title": "容纳人数",
               "width": "100px",
               "dataIndex": "capacity",
@@ -64,12 +64,6 @@
               "title": "联系方式",
               "width": "90px",
               "dataIndex": "reserverPhone",
-              "hideInTable": false
-            },
-            {
-              "title": "用途",
-              "width": "150px",
-              "dataIndex": "purpose",
               "hideInTable": false
             },
             {

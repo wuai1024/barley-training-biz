@@ -1,7 +1,7 @@
 package com.barley.training.stub.biz.facade.admin;
 
-import com.barley.training.stub.biz.request.TeacherRequest;
 import com.barley.common.base.response.ResponseData;
+import com.barley.training.stub.biz.request.TeacherRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;

@@ -13,26 +13,26 @@
             },
             {
               "link": "/admin/device-info/edit/#{id}",
-              "title": "设备编号",
-              "width": "150px",
-              "dataIndex": "deviceCode",
-              "hideInTable": false
-            },
-            {
               "title": "设备名称",
               "width": "150px",
               "dataIndex": "deviceName",
               "hideInTable": false
             },
             {
-              "title": "设备类型",
+              "title": "设备编号",
               "width": "150px",
+              "dataIndex": "deviceCode",
+              "hideInTable": false
+            },
+            {
+              "title": "设备类型",
+              "width": "130px",
               "dataIndex": "deviceTypeName",
               "hideInTable": false
             },
             {
               "title": "设备IP",
-              "width": "150px",
+              "width": "130px",
               "dataIndex": "deviceIp",
               "hideInTable": false
             },
@@ -44,13 +44,13 @@
             },
             {
               "title": "序列号",
-              "width": "160px",
+              "width": "130px",
               "dataIndex": "serialNumber",
               "hideInTable": false
             },
             {
               "title": "购买日期",
-              "width": "165px",
+              "width": "150px",
               "dataIndex": "purchaseDate",
               "hideInTable": false
             },

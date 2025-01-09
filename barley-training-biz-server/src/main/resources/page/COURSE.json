@@ -12,6 +12,12 @@
               "hideInTable": true
             },
             {
+              "title": "培训项目",
+              "width": "120px",
+              "dataIndex": "projectName",
+              "hideInTable": false
+            },
+            {
               "link": "/admin/course/edit/#{id}",
               "title": "培训主题",
               "width": "125px",
@@ -19,13 +25,31 @@
               "hideInTable": false
             },
             {
-              "title": "日期",
+              "title": "培训班名称",
+              "width": "120px",
+              "dataIndex": "className",
+              "hideInTable": false
+            },
+            {
+              "title": "教室",
+              "width": "120px",
+              "dataIndex": "classroomName",
+              "hideInTable": false
+            },
+            {
+              "title": "教师名称",
+              "width": "120px",
+              "dataIndex": "teacherName",
+              "hideInTable": false
+            },
+            {
+              "title": "培训日期",
               "width": "125px",
               "dataIndex": "date",
               "hideInTable": false
             },
             {
-              "title": "时间",
+              "title": "培训时间",
               "width": "125px",
               "dataIndex": "time",
               "hideInTable": false
@@ -37,39 +61,9 @@
               "hideInTable": false
             },
             {
-              "title": "培训项目",
-              "width": "120px",
-              "dataIndex": "projectName",
-              "hideInTable": false
-            },
-            {
-              "title": "培训班名称",
-              "width": "120px",
-              "dataIndex": "className",
-              "hideInTable": false
-            },
-            {
-              "title": "教师",
-              "width": "120px",
-              "dataIndex": "teacherName",
-              "hideInTable": false
-            },
-            {
-              "title": "教室",
-              "width": "120px",
-              "dataIndex": "classroomName",
-              "hideInTable": false
-            },
-            {
               "title": "督导员",
               "width": "120px",
               "dataIndex": "supervise",
-              "hideInTable": false
-            },
-            {
-              "title": "督导员电话",
-              "width": "120px",
-              "dataIndex": "supervisePhone",
               "hideInTable": false
             },
             {

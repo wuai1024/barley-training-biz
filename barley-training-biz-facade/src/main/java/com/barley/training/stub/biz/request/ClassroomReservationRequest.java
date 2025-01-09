@@ -3,7 +3,8 @@ package com.barley.training.stub.biz.request;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
-import java.time.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Data
 @Schema(description = "教室预定")

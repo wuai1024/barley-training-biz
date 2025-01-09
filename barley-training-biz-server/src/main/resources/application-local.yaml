@@ -21,8 +21,8 @@ spring:
     redis:
       host: ${BARLEY_REDIS_HOST:127.0.0.1}
       port: ${BARLEY_REDIS_PORT:6379}
-#      password: ${BARLEY_REDIS_PASSWORD:r-uf61dmje3oz816jctp:0ElTRu1TFRcBHLyk}
-#      database: ${BARLEY_REDIS_DATABASE:2}
+      #      password: ${BARLEY_REDIS_PASSWORD:r-uf61dmje3oz816jctp:0ElTRu1TFRcBHLyk}
+      #      database: ${BARLEY_REDIS_DATABASE:2}
       timeout: 6000
       lettuce:
         pool:

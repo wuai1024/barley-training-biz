@@ -65,12 +65,6 @@
               "hideInTable": false
             },
             {
-              "title": "工作经历",
-              "width": "120px",
-              "dataIndex": "workExperience",
-              "hideInTable": false
-            },
-            {
               "title": "操作",
               "dataIndex": "_panel",
               "menusItems": [

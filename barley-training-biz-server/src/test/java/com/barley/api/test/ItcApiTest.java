@@ -8,6 +8,8 @@ import com.barley.training.biz.channel.response.*;
 import junit.framework.TestCase;
 
 import java.io.IOException;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class ItcApiTest extends TestCase {
 
@@ -78,8 +80,200 @@ public class ItcApiTest extends TestCase {
 
 
     public void testParse() {
-        String responseStr = "{\"company\":\"BL\",\"device_name\":\"TE-0600R\",\"result\":200,\"return_message\":\"操作成功！\",\"data\":{\"status\":\"success\",\"data\":{\"page_index\":1,\"page_max\":1,\"data_sum\":1,\"data\":[{\"id\":5,\"name\":\"test\",\"study_section_id\":0,\"grade_id\":0,\"subject_id\":0,\"class_id\":\"\",\"recorder_id\":1,\"create_id\":2,\"create_time\":\"2025-01-08 17:32:28\",\"start_time\":\"2025-01-08 20:15:00\",\"end_time\":\"2025-01-08 20:17:00\",\"picture\":\"\\/static\\/default\\/video_preview.png\",\"authority\":1,\"is_mobile\":0,\"is_record\":1,\"record_status\":0,\"profile\":\"\",\"comment\":\"\",\"status\":1,\"is_order\":1,\"approve_status\":1,\"app_code\":\"00000000000000000000000000000000\",\"push_code\":\"00000000000000000000000000000000\",\"is_ai\":0,\"ai_class_id\":0,\"password\":\"\",\"limit_type\":0,\"limit_id\":\"\",\"password_classid\":\"\",\"teacher_name\":\"\",\"is_tv713a\":0,\"is_push\":0,\"level_source_id\":0,\"standard_id\":0,\"attend_class_id\":null,\"is_need_login\":0,\"device_code\":\"\",\"syllabus_id\":0,\"recorder_name\":\"ITC_1\",\"ip\":\"192.168.5.63\",\"sign_code\":\"1_yqza9ow40d\",\"teachername\":\"超级管理员\",\"avatar_path\":\"\\/static\\/default\\/user_preview-1.png\",\"cl_name\":\"\",\"type\":10,\"stream_addr\":\"\",\"subjectname\":null,\"studyname\":null,\"gradename\":null,\"source_url\":\"\",\"rtmp\":\"rtmp:\\/\\/192.168.5.62:1114\\/live\\/1_yqza9ow40d\",\"play_url\":\"http:\\/\\/192.168.5.62\\/live\\/1_yqza9ow40d.flv\",\"webrtc_url\":\"webrtc:\\/\\/192.168.5.62\\/live\\/1_yqza9ow40d\",\"m3u8_url\":\"http:\\/\\/192.168.5.62\\/public\\/hls_live\\/1_yqza9ow40d\\/index.m3u8\",\"streamname\":\"1_yqza9ow40d\",\"status_stream_audio\":\"1\",\"status_stream\":\"1\",\"_status\":1,\"_status_text\":\"未开始\",\"examine_status_text\":\"已通过\",\"duration\":\"2025-01-08 20:15:00至20:17:00\",\"live_url\":\"\\/index\\/live\\/live_room\\/id\\/5\",\"time_string\":\"2025-01-08 20:15-20:17\",\"category\":\"itc学校\",\"class_name\":\"\",\"end_time_secon\":7330,\"service_time\":\"2025-01-08 18:14:50\"}]}}}";
-        LiveListResponse resp = JsonUtils.parse(responseStr, LiveListResponse.class);
+        String responseStr = """
+                {
+                  "status": "success",
+                  "code": 200,
+                  "msg": "操作成功！",
+                  "data": [
+                    {
+                      "id": 7,
+                      "name": "摄像头六",
+                      "type": 4,
+                      "classroom_id": 17,
+                      "ip": "192.168.1.82",
+                      "mac": "",
+                      "comment": "",
+                      "status": 1,
+                      "class_id": 0,
+                      "dev_id": 0,
+                      "stream_addr": "rtsp://192.168.1.82:554",
+                      "sign_code": "",
+                      "app_code": "00000000000000000000000000000000",
+                      "is_distribution": 1,
+                      "device_code": "",
+                      "ip_string": [],
+                      "class_name": "学校>摄像头六",
+                      "loading": true,
+                      "recorder_status": -1,
+                      "recorder_class_name": "摄像头六(学校>摄像头六)",
+                      "play_url": "http://192.168.5.62/live/7_stream.flv",
+                      "m3u8_url": "http://192.168.5.62/public/hls_live/7_stream/index.m3u8",
+                      "picture": "/static/default/video_preview.png",
+                      "platform_name": "itc学校",
+                      "platform_id": 1,
+                      "streamname": "7_stream",
+                      "status_stream_audio": false,
+                      "status_stream": false
+                    },
+                    {
+                      "id": 6,
+                      "name": "摄像头五",
+                      "type": 4,
+                      "classroom_id": 16,
+                      "ip": "192.168.5.34",
+                      "mac": "",
+                      "comment": "",
+                      "status": 1,
+                      "class_id": 0,
+                      "dev_id": 0,
+                      "stream_addr": "rtsp://192.168.5.34:554",
+                      "sign_code": "",
+                      "app_code": "00000000000000000000000000000000",
+                      "is_distribution": 1,
+                      "device_code": "",
+                      "ip_string": [],
+                      "class_name": "学校>摄像头五",
+                      "loading": true,
+                      "recorder_status": -1,
+                      "recorder_class_name": "摄像头五(学校>摄像头五)",
+                      "play_url": "http://192.168.5.62/live/6_stream.flv",
+                      "m3u8_url": "http://192.168.5.62/public/hls_live/6_stream/index.m3u8",
+                      "picture": "/static/default/video_preview.png",
+                      "platform_name": "itc学校",
+                      "platform_id": 1,
+                      "streamname": "6_stream",
+                      "status_stream_audio": "1",
+                      "status_stream": "1"
+                    },
+                    {
+                      "id": 5,
+                      "name": "摄像头四",
+                      "type": 4,
+                      "classroom_id": 15,
+                      "ip": "192.168.5.58",
+                      "mac": "",
+                      "comment": "",
+                      "status": 1,
+                      "class_id": 0,
+                      "dev_id": 0,
+                      "stream_addr": "rtsp://192.168.5.58:554",
+                      "sign_code": "",
+                      "app_code": "00000000000000000000000000000000",
+                      "is_distribution": 1,
+                      "device_code": "",
+                      "ip_string": [],
+                      "class_name": "学校>摄像头四",
+                      "loading": true,
+                      "recorder_status": -1,
+                      "recorder_class_name": "摄像头四(学校>摄像头四)",
+                      "play_url": "http://192.168.5.62/live/5_stream.flv",
+                      "m3u8_url": "http://192.168.5.62/public/hls_live/5_stream/index.m3u8",
+                      "picture": "/static/default/video_preview.png",
+                      "platform_name": "itc学校",
+                      "platform_id": 1,
+                      "streamname": "5_stream",
+                      "status_stream_audio": "0",
+                      "status_stream": "1"
+                    },
+                    {
+                      "id": 4,
+                      "name": "摄像头三",
+                      "type": 4,
+                      "classroom_id": 14,
+                      "ip": "192.168.5.59",
+                      "mac": "",
+                      "comment": "",
+                      "status": 1,
+                      "class_id": 0,
+                      "dev_id": 0,
+                      "stream_addr": "rtsp://192.168.5.59:554",
+                      "sign_code": "",
+                      "app_code": "00000000000000000000000000000000",
+                      "is_distribution": 1,
+                      "device_code": "",
+                      "ip_string": [],
+                      "class_name": "学校>摄像头三",
+                      "loading": true,
+                      "recorder_status": -1,
+                      "recorder_class_name": "摄像头三(学校>摄像头三)",
+                      "play_url": "http://192.168.5.62/live/4_stream.flv",
+                      "m3u8_url": "http://192.168.5.62/public/hls_live/4_stream/index.m3u8",
+                      "picture": "/static/default/video_preview.png",
+                      "platform_name": "itc学校",
+                      "platform_id": 1,
+                      "streamname": "4_stream",
+                      "status_stream_audio": "0",
+                      "status_stream": "1"
+                    },
+                    {
+                      "id": 3,
+                      "name": "摄像头二",
+                      "type": 4,
+                      "classroom_id": 13,
+                      "ip": "192.168.5.61",
+                      "mac": "",
+                      "comment": "",
+                      "status": 1,
+                      "class_id": 0,
+                      "dev_id": 0,
+                      "stream_addr": "rtsp://192.168.5.61:554",
+                      "sign_code": "",
+                      "app_code": "00000000000000000000000000000000",
+                      "is_distribution": 1,
+                      "device_code": "",
+                      "ip_string": [],
+                      "class_name": "学校>摄像头二",
+                      "loading": true,
+                      "recorder_status": -1,
+                      "recorder_class_name": "摄像头二(学校>摄像头二)",
+                      "play_url": "http://192.168.5.62/live/3_stream.flv",
+                      "m3u8_url": "http://192.168.5.62/public/hls_live/3_stream/index.m3u8",
+                      "picture": "/static/default/video_preview.png",
+                      "platform_name": "itc学校",
+                      "platform_id": 1,
+                      "streamname": "3_stream",
+                      "status_stream_audio": "1",
+                      "status_stream": "1"
+                    },
+                    {
+                      "id": 2,
+                      "name": "摄像头一",
+                      "type": 4,
+                      "classroom_id": 12,
+                      "ip": "192.168.5.60",
+                      "mac": "",
+                      "comment": "",
+                      "status": 1,
+                      "class_id": 0,
+                      "dev_id": 0,
+                      "stream_addr": "rtsp://192.168.5.60:554",
+                      "sign_code": "",
+                      "app_code": "00000000000000000000000000000000",
+                      "is_distribution": 1,
+                      "device_code": "",
+                      "ip_string": [],
+                      "class_name": "学校>摄像头一",
+                      "loading": true,
+                      "recorder_status": -1,
+                      "recorder_class_name": "摄像头一(学校>摄像头一)",
+                      "play_url": "http://192.168.5.62/live/2_stream.flv",
+                      "m3u8_url": "http://192.168.5.62/public/hls_live/2_stream/index.m3u8",
+                      "picture": "/static/default/video_preview.png",
+                      "platform_name": "itc学校",
+                      "platform_id": 1,
+                      "streamname": "2_stream",
+                      "status_stream_audio": "1",
+                      "status_stream": "1"
+                    }
+                  ]
+                }
+                """;
+
+        InspectResponse resp = JsonUtils.parse(responseStr, InspectResponse.class);
+        Map<String, String> inspectMap = Optional.ofNullable(resp.getData()).orElseGet(List::of).stream()
+                .collect(Collectors.toMap(InspectResponse.DeviceData::getIp, InspectResponse.DeviceData::getM3u8Url, (p, n) -> p));
+
         System.out.printf(resp.toString());
     }
 

@@ -14,6 +14,8 @@ public interface ProjectClassConvertMapper {
     ProjectClassConvertMapper INSTANCE = Mappers.getMapper(ProjectClassConvertMapper.class);
 
     ProjectClass toEntity(ProjectClassRequest request);
+
     ProjectClassDTO toDTO(ProjectClass projectClass);
+
     List<ProjectClassDTO> toDTOList(List<ProjectClass> projectClass);
 }

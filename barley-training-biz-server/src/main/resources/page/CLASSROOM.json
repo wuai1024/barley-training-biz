@@ -38,7 +38,7 @@
             },
             {
               "title": "设备配置",
-              "width": "290px",
+              "width": "350px",
               "dataIndex": "deviceNames",
               "hideInTable": false
             },

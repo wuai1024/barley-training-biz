@@ -6,6 +6,6 @@
         SELECT SUM(actual_payment_amount)
         FROM `order`
         WHERE company_id = #{companyId}
-          AND DATE (create_time) = #{date}
+        AND DATE (create_time) = #{date}
     </select>
 </mapper>

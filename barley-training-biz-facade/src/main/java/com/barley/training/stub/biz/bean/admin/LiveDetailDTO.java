@@ -15,11 +15,11 @@ public class LiveDetailDTO {
 
     private String m3u8Url;
 
-    private int isRecord;
+    private Integer isRecord;
 
-    private int recordStatus;
+    private Integer recordStatus;
 
-    private int id;
+    private Integer liveId;
 
     private String examineStatusText;
 

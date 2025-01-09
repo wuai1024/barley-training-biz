@@ -2,12 +2,14 @@ package com.barley.training.biz.controller.admin;
 
 import com.barley.common.base.response.ResponseData;
 import com.barley.training.biz.service.admin.CourseService;
-import com.barley.training.stub.biz.bean.admin.LiveDetailDTO;
+import com.barley.training.stub.biz.bean.admin.*;
 import com.barley.training.stub.biz.facade.admin.CourseFacade;
 import com.barley.training.stub.biz.request.CourseRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 
 @RestController
@@ -25,6 +27,16 @@ public class CourseController implements CourseFacade {
     @Override
     public ResponseData<Boolean> deleteById(long id) {
         return ResponseData.SUCCESS(courseService.removeBy(id));
+    }
+
+    @Override
+    public ResponseData<List<CourseListDTO>> listByProject(long id) {
+        return ResponseData.SUCCESS(courseService.listByProject(id));
+    }
+
+    @Override
+    public ResponseData<List<CourseViewDTO>> videoByCourseId(long id) {
+        return ResponseData.SUCCESS(courseService.videoByCourseId(id));
     }
 
     @Override

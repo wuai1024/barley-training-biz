@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
-@Tag(name = "InspectFacade", description = "教室巡检")
+@Tag(name = "InspectClientFacade", description = "教室巡检")
 public interface InspectClientFacade {
 
     String URL = "/client/inspect";

@@ -1,58 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="referrer" content="always">
-  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-  <meta http-equiv="default-style" content="on">
-  <meta name="description" content="大麦教育">
-  <title>课程详情</title>
-  <link rel="stylesheet" href="../../static/video-js.css">
-  <script src="../static/js/video.min.js"></script>
-  <script type="text/javascript" src="https://res.wx.qq.com/t/wx_fed/weui.js/res/1.2.21/weui.min.js"></script>
-  <link rel="stylesheet" href="../../static/common.css">
-  <style>
-      .video {
-          width: 100%;
-          min-height: 210px;
-          background-color: #000;
-          display: block;
-      }
+    <meta charset="UTF-8">
+    <meta name="referrer" content="always">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta http-equiv="default-style" content="on">
+    <meta name="description" content="大麦教育">
+    <title>课程详情</title>
+    <link rel="stylesheet" href="../../static/video-js.css">
+    <script src="../static/js/video.min.js"></script>
+    <script type="text/javascript" src="https://res.wx.qq.com/t/wx_fed/weui.js/res/1.2.21/weui.min.js"></script>
+    <link rel="stylesheet" href="../../static/common.css">
+    <style>
+        .video {
+            width: 100%;
+            min-height: 210px;
+            background-color: #000;
+            display: block;
+        }
 
-      .video > .container {
-          display: none;
-      }
+        .video > .container {
+            display: none;
+        }
 
-      .content {
-          padding: 10px 12px;
-      }
-  </style>
+        .content {
+            padding: 10px 12px;
+        }
+    </style>
 </head>
 <body data-weui-theme="light">
 <div class="video">
-  <div class="container">
-    <video
-        id="course-video"
-        class="video-js"
-        style="object-fit: fill"
-        webkit-playsinline="true"
-        x-webkit-airplay="true"
-        playsinline="true"
-        x5-video-player-type="h5"
-        x5-video-orientation="h5"
-        x5-video-player-fullscreen="true"
-        controls
-        preload="auto"
-        data-setup="{}">
-      <source src="../../static/aliyunmedia.mp4" type="video/mp4"/>
-    </video>
-  </div>
+    <div class="container">
+        <video
+                id="course-video"
+                class="video-js"
+                style="object-fit: fill"
+                webkit-playsinline="true"
+                x-webkit-airplay="true"
+                playsinline="true"
+                x5-video-player-type="h5"
+                x5-video-orientation="h5"
+                x5-video-player-fullscreen="true"
+                controls
+                preload="auto"
+                data-setup="{}">
+            <source src="../../static/aliyunmedia.mp4" type="video/mp4"/>
+        </video>
+    </div>
 </div>
 <div class="tabs">
-  <div class="item">课程简介</div>
+    <div class="item">课程简介</div>
 </div>
 <div class="content">
-  鸿蒙OS的使用以及编译机的调试
+    鸿蒙OS的使用以及编译机的调试
 </div>
 <script type="text/javascript">
     var player = videojs('course-video');

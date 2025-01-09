@@ -6,8 +6,8 @@ import com.barley.training.stub.biz.bean.client.TeacherDTO;
 
 import java.util.List;
 
-/**Ø
- *
+/**
+ * Ø
  */
 public interface TeacherClientService extends IService<Teacher> {
 

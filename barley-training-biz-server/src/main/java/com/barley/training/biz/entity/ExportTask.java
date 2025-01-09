@@ -2,9 +2,7 @@ package com.barley.training.biz.entity;
 
 import com.barley.common.datasource.BaseEntity;
 import com.barley.training.biz.entity.ext.MapExt;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Setter
 @Getter

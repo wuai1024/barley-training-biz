@@ -57,18 +57,21 @@ public class InspectClientServiceImpl implements InspectClientService {
                 ));
 
         InspectResponse response = itcApis.inspect();
-        Map<String, String> inspectMap = Optional.ofNullable(response.getData()).orElseGet(List::of).stream()
-                .collect(Collectors.toMap(InspectResponse.DeviceData::getIp, InspectResponse.DeviceData::getM3u8Url, (p, n) -> p));
+        Map<String, InspectResponse.DeviceData> inspectMap = Optional.ofNullable(response.getData()).orElseGet(List::of).stream()
+                .collect(Collectors.toMap(InspectResponse.DeviceData::getIp, v -> v, (p, n) -> p));
         if (inspectMap.isEmpty()) {
             return List.of();
         }
         return deviceInfos.stream()
                 .map(deviceInfo -> {
+                    InspectResponse.DeviceData deviceData = inspectMap.get(deviceInfo.getDeviceIp());
                     InspectDTO inspectDTO = new InspectDTO();
                     inspectDTO.setDeviceName(deviceInfo.getDeviceName());
                     inspectDTO.setClassroomName(deviceClassInfo.get(deviceInfo.getId()));
                     inspectDTO.setType(deviceInfo.getDeviceType());
-                    inspectDTO.setVideoUrl(inspectMap.get(deviceInfo.getDeviceIp()));
+                    inspectDTO.setM3u8Url(deviceData.getM3u8Url());
+                    inspectDTO.setWebrtcUrl(deviceData.getWebrtcUrl());
+                    inspectDTO.setPlayUrl(deviceData.getPlayUrl());
                     return inspectDTO;
                 }).toList();
     }

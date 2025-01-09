@@ -1,13 +1,10 @@
 package com.barley.training.stub.biz.facade.admin;
 
-import com.barley.training.stub.biz.request.DeviceInfoRequest;
 import com.barley.common.base.response.ResponseData;
+import com.barley.training.stub.biz.request.DeviceInfoRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "DeviceInfoFacade", description = "设备信息")
 public interface DeviceInfoFacade {
