@@ -206,6 +206,7 @@ public class ItcApis {
         ItcRequest<VideoListRequest> liveDetailRequest = new ItcRequest<>();
         liveDetailRequest.setCompany(config.getCompany());
         liveDetailRequest.setDevice_name(config.getDevice_name());
+        liveDetailRequest.setLive_id(videoListRequest.getLive_id());
         liveDetailRequest.setData(videoListRequest);
 
         Response response = apisHttp.request(config.getBaseUrl(), path)
