@@ -1,0 +1,55 @@
+name: Java CI with Maven Docker
+
+on:
+  push:
+    branches: [ main ]
+env:
+  TZ: Asia/Shanghai
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Get Image Tag Name
+        run: |
+          TAG_NAME="${{ github.sha }}"
+          echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
+      - name: Login to Aliyun Container Registry (ACR)
+        uses: aliyun/acr-login@v1
+        with:
+          login-server: ${{ secrets.ACR_URL }}
+          region-id: cn-shanghai
+          username: "${{ secrets.ACR_USERNAME }}"
+          password: "${{ secrets.ACR_PASSWORD }}"
+      - name: Docker Build Project
+        run: |
+          cat > Dockerfile << EOF
+          # 第一阶段：使用Maven构建Java应用程序
+          FROM maven:3.9.7-eclipse-temurin-21 AS builder
+          WORKDIR /app
+          COPY . .
+          RUN mvn -B clean package -Dmaven.test.skip=true
+          
+          # 第二阶段：使用OpenJDK构建最终镜像
+          FROM alpine:latest
+          WORKDIR /app
+          
+          RUN apk update && \
+            apk --no-cache add tzdata openjdk21 && \
+            mkdir ./logs
+          
+          # 设置时区为 "Asia/Shanghai"，这里根据你的需求设置时区
+          ENV TZ=Asia/Shanghai
+          # 设置 JAVA_HOME 环境变量
+          ENV JAVA_HOME /usr/lib/jvm/default-jvm
+          
+          COPY --from=builder /app/barley-training-biz-server/target/*.jar ./app.jar
+          CMD ["sh","-c","java \${JAVA_OPTS} -Duser.timezone=Asia/Shanghai -Dfile.encoding=utf-8 -Djava.security.egd=file:/dev/./urandom -jar app.jar \${PARAMS}"]
+          EOF
+          
+          docker build \
+          -t ${{ secrets.DOCKER_HUB_URL }}/xqsight/barley-training-biz:${{ env.TAG_NAME }} \
+          -t ${{ secrets.DOCKER_HUB_URL }}/xqsight/barley-training-biz:latest \
+          --push \
+          .
