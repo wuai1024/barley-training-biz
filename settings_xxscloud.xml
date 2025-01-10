@@ -2,14 +2,7 @@
 <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
-    <mirrors>
-        <mirror>
-            <id>mirror</id>
-            <mirrorOf>central,jcenter,!repo-mvrma</mirrorOf>
-            <name>mirror</name>
-            <url>https://maven.aliyun.com/nexus/content/groups/public</url>
-        </mirror>
-    </mirrors>
+
     <servers>
         <server>
             <id>repo-mvrma</id>
@@ -21,16 +14,16 @@
         <profile>
             <id>rdc</id>
             <properties>
-                
+
                 <altReleaseDeploymentRepository>
                     repo-mvrma::default::https://packages.aliyun.com/5ea17a4fe17c0e0001fd963e/maven/repo-mvrma
                 </altReleaseDeploymentRepository>
-                
-                
+
+
                 <altSnapshotDeploymentRepository>
                     repo-mvrma::default::https://packages.aliyun.com/5ea17a4fe17c0e0001fd963e/maven/repo-mvrma
                 </altSnapshotDeploymentRepository>
-                
+
             </properties>
             <repositories>
                 <repository>
