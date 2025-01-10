@@ -49,7 +49,7 @@ jobs:
           EOF
           
           docker build \
-          -t ${{ secrets.DOCKER_HUB_URL }}/xqsight/barley-training-biz:${{ env.TAG_NAME }} \
-          -t ${{ secrets.DOCKER_HUB_URL }}/xqsight/barley-training-biz:latest \
+          -t ${{ secrets.ACR_URL }}/xqsight/barley-training-biz:${{ env.TAG_NAME }} \
+          -t ${{ secrets.ACR_URL }}/xqsight/barley-training-biz:latest \
           --push \
           .
