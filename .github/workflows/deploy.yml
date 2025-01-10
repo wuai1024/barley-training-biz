@@ -29,7 +29,7 @@ jobs:
           FROM maven:3.9.7-eclipse-temurin-21 AS builder
           WORKDIR /app
           COPY . .
-          RUN mvn -B clean package -Dmaven.test.skip=true
+          RUN mvn -B clean package -Dmaven.test.skip=true -s settings_xxscloud.xml
           
           # 第二阶段：使用OpenJDK构建最终镜像
           FROM alpine:latest
