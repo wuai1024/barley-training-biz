@@ -10,25 +10,15 @@
             <password>e6DGNV)h2I03</password>
         </server>
     </servers>
+
     <profiles>
         <profile>
             <id>rdc</id>
-            <properties>
-
-                <altReleaseDeploymentRepository>
-                    repo-mvrma::default::https://packages.aliyun.com/5ea17a4fe17c0e0001fd963e/maven/repo-mvrma
-                </altReleaseDeploymentRepository>
-
-
-                <altSnapshotDeploymentRepository>
-                    repo-mvrma::default::https://packages.aliyun.com/5ea17a4fe17c0e0001fd963e/maven/repo-mvrma
-                </altSnapshotDeploymentRepository>
-
-            </properties>
             <repositories>
+                <!-- Maven 官方中央仓库 -->
                 <repository>
                     <id>central</id>
-                    <url>https://maven.aliyun.com/nexus/content/groups/public</url>
+                    <url>https://repo.maven.apache.org/maven2</url>
                     <releases>
                         <enabled>true</enabled>
                     </releases>
@@ -36,17 +26,7 @@
                         <enabled>false</enabled>
                     </snapshots>
                 </repository>
-                <repository>
-                    <id>snapshots</id>
-                    <url>https://maven.aliyun.com/nexus/content/groups/public</url>
-                    <releases>
-                        <enabled>false</enabled>
-                    </releases>
-                    <snapshots>
-                        <enabled>true</enabled>
-                        <updatePolicy>always</updatePolicy>
-                    </snapshots>
-                </repository>
+                <!-- 私有仓库，仅作为后备 -->
                 <repository>
                     <id>repo-mvrma</id>
                     <url>https://packages.aliyun.com/5ea17a4fe17c0e0001fd963e/maven/repo-mvrma</url>
@@ -60,9 +40,10 @@
                 </repository>
             </repositories>
             <pluginRepositories>
+                <!-- Maven 官方中央仓库 -->
                 <pluginRepository>
                     <id>central</id>
-                    <url>https://maven.aliyun.com/nexus/content/groups/public</url>
+                    <url>https://repo.maven.apache.org/maven2</url>
                     <releases>
                         <enabled>true</enabled>
                     </releases>
@@ -70,17 +51,7 @@
                         <enabled>false</enabled>
                     </snapshots>
                 </pluginRepository>
-                <pluginRepository>
-                    <id>snapshots</id>
-                    <url>https://maven.aliyun.com/nexus/content/groups/public</url>
-                    <releases>
-                        <enabled>false</enabled>
-                    </releases>
-                    <snapshots>
-                        <enabled>true</enabled>
-                        <updatePolicy>always</updatePolicy>
-                    </snapshots>
-                </pluginRepository>
+                <!-- 私有仓库，仅作为后备 -->
                 <pluginRepository>
                     <id>repo-mvrma</id>
                     <url>https://packages.aliyun.com/5ea17a4fe17c0e0001fd963e/maven/repo-mvrma</url>
@@ -95,6 +66,7 @@
             </pluginRepositories>
         </profile>
     </profiles>
+
     <activeProfiles>
         <activeProfile>rdc</activeProfile>
     </activeProfiles>
